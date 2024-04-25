@@ -6,6 +6,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import ContactUs from '../Components/ContactUs/ContactUs';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
+import AddTravelSpot from '../Pages/AddTravelSpot/AddTravelSpot';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>,
+      },
+      {
+        path: '/add_travel_spot',
+        element: <AddTravelSpot></AddTravelSpot>,
       },
     ],
   },

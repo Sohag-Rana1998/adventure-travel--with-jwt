@@ -38,6 +38,9 @@ module.exports = withMT({
     plugins: [],
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "synthwave", "cupcake"],
+  },
 });
 
 

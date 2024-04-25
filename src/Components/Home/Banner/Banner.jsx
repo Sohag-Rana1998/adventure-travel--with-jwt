@@ -23,7 +23,7 @@ const Banner = () => {
   const imgURL = 'https://i.postimg.cc/pr4z3rxT/Rectangle-16.png';
 
   return (
-    <div className="gadgetContainer lg:h-[600px]  bg-gradient-to-r from-[#F9F3F0] from-10% via-[#FCE7DC] via-30% to-[#F9F3F0] to-90% dark:bg-gradient-to-r dark:from-[#f2f2d8] dark:from-10% dark:via-[#FCE7DC] dark:via-30% dark:to-[#fae1d4]">
+    <div className="max-w-7xl w-full container mx-auto  lg:h-[500px]  bg-gradient-to-r from-[#F9F3F0] from-10% via-[#FCE7DC] via-30% to-[#F9F3F0] to-90% dark:bg-gradient-to-r dark:from-[#f2f2d8] dark:from-10% dark:via-[#FCE7DC] dark:via-30% dark:to-[#fae1d4]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -41,7 +41,7 @@ const Banner = () => {
       >
         {/* slide 1 */}
         <SwiperSlide>
-          <div className="md:h-[500px] h-auto">
+          <div className=" ">
             <div className="h-full flex flex-col md:flex-row justify-between md:gap-2 gap-10 items-center">
               <div className="flex-1 mt-10 md:mt-0 w-full md:w-auto">
                 <p className="font-semibold text-[#FF497C] mb-3 text-center md:text-left">
