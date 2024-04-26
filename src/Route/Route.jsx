@@ -6,7 +6,11 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import ContactUs from '../Components/ContactUs/ContactUs';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
-import AddTravelSpot from '../Pages/AddTravelSpot/AddTravelSpot';
+
+import AllTouristSpot from '../Pages/AllTouristSpot/AllTouristSpot';
+import MyListOfSpot from '../Pages/MyListOfSpot/MyListOfSpot';
+import AddTouristSpot from '../Pages/AddTouristSpot/AddTouristSpot';
+import ViewSpotDetails from '../Pages/ViewSpotDetails/ViewSpotDetails';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +35,20 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: '/add_travel_spot',
-        element: <AddTravelSpot></AddTravelSpot>,
+        path: '/add_tourist_spot',
+        element: <AddTouristSpot></AddTouristSpot>,
+      },
+      {
+        path: '/all-tourist-spot',
+        element: <AllTouristSpot></AllTouristSpot>,
+      },
+      {
+        path: '/my-tourist-spot-list',
+        element: <MyListOfSpot></MyListOfSpot>,
+      },
+      {
+        path: '/view-details',
+        element: <ViewSpotDetails></ViewSpotDetails>,
       },
     ],
   },

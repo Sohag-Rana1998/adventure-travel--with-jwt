@@ -93,7 +93,7 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/add_travel_spot"
+          to="/all-tourist-spot"
           className={({ isActive, isPending }) =>
             isActive
               ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
@@ -102,7 +102,35 @@ const NavBar = () => {
               : ''
           }
         >
-          Add Spot
+          All Tourist Spot
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add_tourist_spot"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          Add Tourist Spot
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-tourist-spot-list"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          My List
         </NavLink>
       </li>
 
