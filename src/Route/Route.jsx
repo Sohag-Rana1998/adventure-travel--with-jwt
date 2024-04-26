@@ -11,6 +11,8 @@ import AllTouristSpot from '../Pages/AllTouristSpot/AllTouristSpot';
 import MyListOfSpot from '../Pages/MyListOfSpot/MyListOfSpot';
 import AddTouristSpot from '../Pages/AddTouristSpot/AddTouristSpot';
 import ViewSpotDetails from '../Pages/ViewSpotDetails/ViewSpotDetails';
+import UpdateTouristData from '../Pages/UpdateTouristData/UpdateTouristData';
+import PrivateRoute from './PrivetRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -44,11 +46,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/my-tourist-spot-list',
-        element: <MyListOfSpot></MyListOfSpot>,
+        element: (
+          <PrivateRoute>
+            <MyListOfSpot></MyListOfSpot>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/view-details',
+        path: '/view-details/:id',
         element: <ViewSpotDetails></ViewSpotDetails>,
+      },
+      {
+        path: '/update-tourist-data/:id',
+        element: <UpdateTouristData></UpdateTouristData>,
       },
     ],
   },

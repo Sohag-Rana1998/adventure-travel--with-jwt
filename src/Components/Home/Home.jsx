@@ -1,4 +1,3 @@
-import CoffeeHouse from '../CoffeeHouse/CoffeeHouse';
 import UseCoffeeData from '../../UseCoffeeData/UseCoffeeData';
 
 import FollowUs from './FollowUs';
@@ -12,11 +11,11 @@ const Home = () => {
       <div>
         <Banner></Banner>
       </div>
-      <CoffeeHouse
+      {/* <CoffeeHouse
         coffees={coffeeData}
         isloading={isloading}
         reFetch={reFetch}
-      ></CoffeeHouse>
+      ></CoffeeHouse> */}
       <FollowUs></FollowUs>
     </div>
   );

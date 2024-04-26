@@ -1,14 +1,32 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-const AddTouristSpot = () => {
-  const { user } = useContext(AuthContext);
-  const userEmail = user?.email || 'Not Found';
-  const userName = user?.displayName;
-  console.log(userEmail, userName);
+const UpdateTouristData = () => {
+  const { id } = useParams();
+  const [spot, setSpot] = useState({});
 
-  const handleAddSpot = e => {
+  useEffect(() => {
+    axios.get(`http://localhost:5000/tourist-spot/${id}`).then(data => {
+      setSpot(data.data);
+    });
+  }, [id]);
+
+  const {
+    photo,
+    spotName,
+    CountryName,
+    location,
+    description,
+    averageCost,
+    season,
+    travelTime,
+    visitor,
+  } = spot;
+
+  const handleUpdateSpot = e => {
     e.preventDefault();
     const form = e.target;
     const photo = form.photo.value;
@@ -20,49 +38,38 @@ const AddTouristSpot = () => {
     const season = form.seasonality.value;
     const travelTime = form.travelTime.value;
     const visitor = form.visitor.value;
-    const userName = form.userName.value;
-    const email = form.email.value;
 
-    if (email == 'Not Found') {
-      Swal.fire({
-        icon: 'error',
-        title: 'Please Log In With Your Valid Email Address And Try Again.',
-        showConfirmButton: true,
-      });
-    } else {
-      const addTouristSpot = {
-        photo,
-        spotName,
-        CountryName,
-        location,
-        description,
-        averageCost,
-        season,
-        travelTime,
-        visitor,
-        userName,
-        email,
-      };
-      console.log(addTouristSpot);
-      fetch('http://localhost:5000/add-tourist-spot', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(addTouristSpot),
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          Swal.fire({
-            icon: 'success',
-            title: 'Coffee Added Successfully',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          form.reset();
+    const id = spot._id;
+    const UpdateTouristSpot = {
+      photo,
+      spotName,
+      CountryName,
+      location,
+      description,
+      averageCost,
+      season,
+      travelTime,
+      visitor,
+    };
+    console.log(UpdateTouristSpot);
+    fetch(`http://localhost:5000/tourist-spot/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(UpdateTouristSpot),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully Updated Your Tourist Spot Data',
+          showConfirmButton: false,
+          timer: 1500,
         });
-    }
+        form.reset();
+      });
   };
 
   return (
@@ -71,11 +78,11 @@ const AddTouristSpot = () => {
         {/* Heading */}
         <div className="mt-5 mb-8">
           <p className="text-center text-3xl font-semibold dark:text-white">
-            Add Your Tourist Spot
+            Update Your Tourist Spot
           </p>
         </div>
         {/* form */}
-        <form onSubmit={handleAddSpot}>
+        <form onSubmit={handleUpdateSpot}>
           <div className="flex gap-8 ">
             <div className="flex-1">
               <label className="block mb-2 dark:text-white" htmlFor="photo">
@@ -87,6 +94,7 @@ const AddTouristSpot = () => {
                 placeholder="Add Image URL"
                 id="photo"
                 name="photo"
+                defaultValue={photo}
                 required
               />
 
@@ -102,6 +110,7 @@ const AddTouristSpot = () => {
                 placeholder=" Country Name"
                 id="countryName"
                 name="countryName"
+                defaultValue={CountryName}
                 required
               />
               <label
@@ -116,6 +125,7 @@ const AddTouristSpot = () => {
                 placeholder="Enter short description"
                 id="description"
                 name="description"
+                defaultValue={description}
                 required
               />
               <label
@@ -130,6 +140,7 @@ const AddTouristSpot = () => {
                 placeholder="Add Season Name "
                 id="seasonality"
                 name="seasonality"
+                defaultValue={season}
                 required
               />
               <label
@@ -144,6 +155,7 @@ const AddTouristSpot = () => {
                 placeholder="Number of visitors per year"
                 id="visitor"
                 name="visitor"
+                defaultValue={visitor}
                 required
               />
             </div>
@@ -158,6 +170,7 @@ const AddTouristSpot = () => {
                 placeholder="Name Of Tourist Spot"
                 id="spot"
                 name="spot"
+                defaultValue={spotName}
                 required
               />
               <label
@@ -172,6 +185,7 @@ const AddTouristSpot = () => {
                 placeholder="Enter Spot Location"
                 id="location"
                 name="location"
+                defaultValue={location}
                 required
               />
 
@@ -187,55 +201,31 @@ const AddTouristSpot = () => {
                 placeholder="Average-cost"
                 id="averageCost"
                 name="averageCost"
+                defaultValue={averageCost}
                 required
-              />
-              <label
-                className="block mt-4 mb-2 dark:text-white"
-                htmlFor="travelTime"
-              >
-                Travel Time
-              </label>
-              <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
-                type="number"
-                placeholder="Add Travel Time (e.g 3days / 7days)"
-                id="travelTime"
-                name="travelTime"
-                required
-              />
-              <label
-                className="block mt-4 mb-2 dark:text-white"
-                htmlFor="userName"
-              >
-                User Name
-              </label>
-              <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
-                type="text"
-                placeholder="User Name"
-                id="userName"
-                name="userName"
-                defaultValue={userName}
               />
             </div>
           </div>
-          <label className="block mt-4 mb-2 dark:text-white" htmlFor="email">
-            User Email (You cannot change your user email here)
+          <label
+            className="block mt-4 mb-2 dark:text-white"
+            htmlFor="travelTime"
+          >
+            Travel Time
           </label>
           <input
             className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
-            type="email"
-            placeholder="User Email"
-            id="email"
-            name="email"
-            value={userEmail}
-            disabled
+            type="number"
+            placeholder="Add Travel Time (e.g 3days / 7days)"
+            id="travelTime"
+            name="travelTime"
+            defaultValue={travelTime}
+            required
           />
 
           <input
             className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ab3154]  bg-[#FF497C] duration-200 text-white cursor-pointer font-semibold"
             type="submit"
-            value="Add Your Tourist Spot"
+            value="Update Data"
           />
         </form>
       </div>
@@ -243,4 +233,4 @@ const AddTouristSpot = () => {
   );
 };
 
-export default AddTouristSpot;
+export default UpdateTouristData;

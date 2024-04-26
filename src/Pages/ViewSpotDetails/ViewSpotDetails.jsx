@@ -1,79 +1,66 @@
-import { Button, Card, CardBody, Typography } from '@material-tailwind/react';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
+} from '@material-tailwind/react';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaLocationDot } from 'react-icons/fa6';
-import { ScrollRestoration, useLoaderData, useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useRef } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import '../..//styles.css';
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
 
 const ViewSpotDetails = () => {
-  return   const { id } = useParams();
-  const data = useLoaderData();
-  const [estate, setEstate] = useState({});
+  const { id } = useParams();
+  const [spot, setSpot] = useState({});
 
   useEffect(() => {
-    const singleData = data.find(property => property.id == id);
+    axios.get(`http://localhost:5000/tourist-spot/${id}`).then(data => {
+      setSpot(data.data);
+    });
+  }, [id]);
 
-    setEstate(singleData);
-  }, [id, data]);
+  // Save to local storage:
+  const savedSpots = JSON.parse(localStorage.getItem('spots') || '[]');
 
-  const savedHomes = JSON.parse(localStorage.getItem('homes') || '[]');
+  const [places, setPlaces] = useState(savedSpots);
 
-  const [Homes, setHomes] = useState(savedHomes);
-
-  const handleSavedHomes = home => {
-    const isExist = Homes.find(house => house.id === home.id);
+  const handleSavedSpot = spot => {
+    console.log(spot);
+    const isExist = places?.find(place => place._id == spot._id);
     if (!isExist) {
-      setHomes([...Homes, home]);
+      setPlaces([...places, spot]);
 
-      toast.success('Successfully Saved On Your Saved List.');
+      toast.success('Successfully Saved On Your Cart.');
     } else {
-      toast.warn('Already Saved On Your Saved List.');
+      toast.warn('Already Saved On Your Saved Cart.');
     }
   };
-  console.log(Homes);
+  console.log(places);
 
   useEffect(() => {
-    localStorage.setItem('homes', JSON.stringify(Homes));
-  }, [Homes]);
+    localStorage.setItem('spots', JSON.stringify(places));
+  }, [places]);
 
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    progressCircle.current.style.setProperty('--progress', 1 - progress);
-    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-  };
-
-  const {
-    estate_title,
-    segment_name,
-    price,
-    status,
-    area,
-    location,
-    facilities,
-    image_url,
-    image_url2,
-    image_url3,
-    description,
-  } = estate;
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(setLoading, 500, false);
   }, []);
+
+  const {
+    photo,
+    spotName,
+    CountryName,
+    location,
+    description,
+    averageCost,
+    season,
+    travelTime,
+    visitor,
+  } = spot;
+
   return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
@@ -87,12 +74,12 @@ const ViewSpotDetails = () => {
       <div className="h-[150px]  animate__animated animate__fadeInDown w-full rounded-xl bg-[url(https://i.ibb.co/PtcPs7P/6.jpg)] text-center mb-10  bg-no-repeat bg-center bg-opacity-10">
         <div className="h-[150px] w-full rounded-xl flex items-center justify-center bg-black bg-opacity-30">
           <h1 className="text-4xl font-bold text-white animate__animated animate__zoomIn animate__delay__1s">
-            Property Details
+            Details About The Spot
           </h1>
         </div>
       </div>
       <div>
-        <Typography variant="h2">{estate_title}</Typography>
+        <Typography variant="h2">{spotName}</Typography>
         <Typography
           variant="lead"
           className=" font-lg text-lg flex items-center gap-2 mb-3"
@@ -102,123 +89,94 @@ const ViewSpotDetails = () => {
         </Typography>
       </div>
       <Card>
-        <div className="rounded-xl">
-          <div className=" relative mx-auto">
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              modules={[Autoplay, Pagination, Navigation]}
-              onAutoplayTimeLeft={onAutoplayTimeLeft}
-              className="mySwiper h-[500px]  rounded-2xl"
-            >
-              <SwiperSlide>
-                {' '}
-                <img
-                  src={image_url}
-                  alt="image 1"
-                  className="h-full w-full object-fit"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src={image_url2}
-                  alt="image 2"
-                  className="h-full w-full object-fit"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src={image_url3}
-                  alt="image 3"
-                  className="h-full w-full object-fit"
-                />
-              </SwiperSlide>
+        <div className="flex justify-between items-start">
+          <CardHeader
+            floated={false}
+            shadow={false}
+            color="transparent"
+            className="m-0 w-full p-0 rounded-none"
+          >
+            <div className="relative">
+              <img
+                src={photo}
+                className="w-full rounded-2xl  h-96 hover:scale-[110%] duration-700"
+                alt="ui/ux review check"
+              />
 
-              <div className="autoplay-progress" slot="container-end">
-                <svg viewBox="0 0 48 48" ref={progressCircle}>
-                  <circle cx="24" cy="24" r="20"></circle>
-                </svg>
-                <span ref={progressContent}></span>
-              </div>
-            </Swiper>
-            <button className="px-10 py-4 rounded-tr-xl bg-blue-500 absolute z-10 right-0 top-0 text-white text-xl font-bold bg-opacity-80">
-              {status}
-            </button>
-          </div>
-        </div>
-        <CardBody className="flex flex-col  justify-between h-auto  ">
-          <div>
-            <div>
-              <div className="flex flex-col md:flex-row justify-between ">
-                <Typography
-                  variant="lead"
-                  color="gray"
-                  className=" font-bold text-2xl"
-                >
-                  #{segment_name}
+              <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 p-2 rounded-t-lg ">
+                <Typography className="text-white font-sm text-sm flex items-center gap-2">
+                  <FaLocationDot />
+                  {location}
                 </Typography>
-                <div>
+              </div>
+            </div>
+          </CardHeader>
+
+          <CardBody className="flex w-full flex-col  justify-between h-auto  ">
+            <div>
+              <div>
+                <div className="flex flex-col md:flex-row justify-between ">
+                  <Typography color="gray" className=" font-bold text-2xl">
+                    {CountryName}
+                  </Typography>
                   <div>
-                    <h3 className=" text-2xl text-blue-600  font-bold ">
-                      Price: {price}
-                    </h3>
-                    <div className="text-2xl text-blue-600  font-bold">
-                      <span className="font-bold ">Area: </span>
-                      {area}
+                    <div>
+                      <h3 className=" text-2xl text-blue-600  font-bold ">
+                        Average Cost: About ${averageCost}
+                      </h3>
+                      <div className="text-2xl text-blue-600  font-bold">
+                        <span className="font-bold ">
+                          Travel Time: {travelTime} days{' '}
+                        </span>
+                        {}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <Typography variant="lead" color="gray" className="text-lg mt-2">
-                <span className="font-bold">Details About This Property: </span>
-                {description}
-              </Typography>
-            </div>
-            <div className="flex flex-col  md:flex-row  justify-between gap-2 mt-2">
-              <div className="w-full">
                 <Typography
                   variant="lead"
-                  color="black"
-                  className="font-normal md:font-semibold flex  gap-2 "
+                  color="gray"
+                  className="text-lg mt-2"
                 >
-                  <span className="font-bold">Facilities: </span>
-                  <div className="flex flex-col md:flex-row gap-2">
-                    {facilities?.map((facility, indx) => (
-                      <div key={indx}>
-                        <span>{facility}, </span>
-                      </div>
-                    ))}
-                    <span> etc....</span>
-                  </div>
+                  <span className="font-bold">Details About The Spot: </span>
+                  {description}
                 </Typography>
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-end  r mt-3">
-            <Button
-              onClick={() => handleSavedHomes(estate)}
-              size="lg"
-              className="bg-blue-600 w-full md:w-40 hover:bg-blue-gray-900"
-            >
-              Add To Cart
-            </Button>
-          </div>
-        </CardBody>
+            <div>
+              <Typography
+                variant="lead"
+                color="black"
+                className="font-normal md:font-semibold flex  gap-2 "
+              >
+                <span className="font-bold">
+                  Total Visitors Per Year: Aproximately {visitor}{' '}
+                </span>
+              </Typography>
+              <Typography
+                variant="lead"
+                color="black"
+                className="font-normal md:font-semibold flex  gap-2 "
+              >
+                <span className="font-bold">Best Season: {season} </span>
+              </Typography>
+            </div>
+            <div className="flex flex-col md:flex-row justify-end  r mt-3">
+              <Button
+                onClick={() => handleSavedSpot(spot)}
+                size="lg"
+                className="bg-blue-600 w-full md:w-40 hover:bg-blue-gray-900"
+              >
+                Add to Cart
+              </Button>
+            </div>
+          </CardBody>
+        </div>
       </Card>
       <ScrollRestoration />
     </div>
   );
 };
-
 
 export default ViewSpotDetails;

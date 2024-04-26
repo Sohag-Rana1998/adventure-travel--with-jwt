@@ -1,4 +1,4 @@
-import UseAllSpotData from '../../useUsersData/useAllSpotData/UseAllSpotData';
+import UseAllSpotData from '../../useAllSpotData/UseAllSpotData';
 import SingleTouristSpot from './SingleTouristSpot';
 
 const AllTouristSpot = () => {
@@ -29,9 +29,11 @@ const AllTouristSpot = () => {
         </select>
       </div> */}
       This All tourist spot page............
-      {data?.map(spot => (
-        <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {data?.map(spot => (
+          <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
+        ))}
+      </div>
     </div>
   );
 };

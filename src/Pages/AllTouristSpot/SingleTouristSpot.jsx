@@ -57,7 +57,7 @@ const SingleTouristSpot = ({ spot }) => {
               <h3 className="mb-2 text-lg p-2 text-white rounded-md bg-teal-900 font-bold ">
                 About ${averageCost}
               </h3>
-              <Link to={`/view-detail/${_id}`}>
+              <Link to={`/view-details/${_id}`}>
                 <button className="bg-blue-600 btn mb-2  hover:scale-[110%] duration-500  md:w-auto text-white font-bold hover:bg-blue-gray-900">
                   View Property
                 </button>
