@@ -66,18 +66,17 @@ const ViewSpotDetails = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="my-8 md:my-16">
+    <div className="my-8 ">
       <Helmet>
-        <title>RESIDENCE HUB | Details </title>
+        <title>Adventure Travel | Details </title>
       </Helmet>
 
-      <div className="h-[150px]  animate__animated animate__fadeInDown w-full rounded-xl bg-[url(https://i.ibb.co/PtcPs7P/6.jpg)] text-center mb-10  bg-no-repeat bg-center bg-opacity-10">
-        <div className="h-[150px] w-full rounded-xl flex items-center justify-center bg-black bg-opacity-30">
-          <h1 className="text-4xl font-bold text-white animate__animated animate__zoomIn animate__delay__1s">
-            Details About The Spot
-          </h1>
-        </div>
+      <div className="h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
+        <h1 className="text-4xl font-bold text-white animate__animated animate__zoomIn animate__delay__1s">
+          Details About The Spot
+        </h1>
       </div>
+
       <div>
         <Typography variant="h2">Spot Name: {spotName}</Typography>
         <Typography
@@ -102,13 +101,6 @@ const ViewSpotDetails = () => {
                 className="w-full rounded-2xl  h-96 hover:scale-[110%] duration-700"
                 alt="ui/ux review check"
               />
-
-              <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 p-2 rounded-t-lg ">
-                <Typography className="text-white font-sm text-sm flex items-center gap-2">
-                  <FaLocationDot />
-                  {location}
-                </Typography>
-              </div>
             </div>
           </CardHeader>
 
@@ -149,7 +141,7 @@ const ViewSpotDetails = () => {
                 className="font-normal md:font-semibold flex  gap-2 "
               >
                 <span className="font-bold">
-                  Total Visitors Per Year: Aproximately {visitor}{' '}
+                  Total Visitors Per Year: Approximately {visitor}{' '}
                 </span>
               </Typography>
               <Typography
@@ -166,7 +158,7 @@ const ViewSpotDetails = () => {
                 size="lg"
                 className="bg-blue-600 w-full md:w-40 hover:bg-blue-gray-900"
               >
-                Add to Cart
+                Book Now
               </Button>
             </div>
           </CardBody>

@@ -17,11 +17,11 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center text-center ">
             <div className="text-3xl flex flex-col items-center font-bold text-light-blue-600">
               <img
-                className="w-24 h-24"
-                src="https://i.postimg.cc/pr4z3rxT/Rectangle-16.png"
+                className="w-32 h-24"
+                src="https://i.postimg.cc/JzYG4pvL/studio-pc-2331-47.jpg"
                 alt=""
               />
-              <h2> Travel Zone</h2>
+              <h2 className="text-2xl font-bold">Adventure Travel</h2>
             </div>
             <footer className="footer p-10  text-base-content">
               <nav>

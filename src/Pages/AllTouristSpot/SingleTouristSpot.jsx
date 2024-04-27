@@ -1,8 +1,14 @@
-import { CardBody, CardHeader, Typography } from '@material-tailwind/react';
+import {
+  Button,
+  CardBody,
+  CardHeader,
+  Typography,
+} from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { MdOutlineWatchLater } from 'react-icons/md';
+import { TiWeatherPartlySunny } from 'react-icons/ti';
 
 const SingleTouristSpot = ({ spot }) => {
   const {
@@ -12,7 +18,8 @@ const SingleTouristSpot = ({ spot }) => {
     CountryName,
     location,
     averageCost,
-
+    season,
+    visitor,
     travelTime,
   } = spot;
   return (
@@ -27,7 +34,7 @@ const SingleTouristSpot = ({ spot }) => {
           <div className="relative">
             <img
               src={photo}
-              className="w-full rounded-2xl  h-80 hover:scale-[110%] duration-700"
+              className="w-full rounded-t-2xl  h-72 hover:scale-[110%] duration-700"
               alt="ui/ux review check"
             />
 
@@ -39,34 +46,51 @@ const SingleTouristSpot = ({ spot }) => {
           </div>
         </CardHeader>
         <CardBody className="px-3 h-auto  m-0 ">
-          <div className="flex  h-full md:h-[200px] flex-col justify-between">
-            <Typography className="text-2xl font-bold">
-              Enjoy The Beauty Of {spotName}
-            </Typography>
+          <div className="flex  h-full md:h-[300px] flex-col justify-between">
+            <div>
+              <Typography className="text-2xl ">
+                Enjoy The Beauty Of {spotName}
+              </Typography>
+              <Typography className="  ">
+                <span className="text-blue-500 text-xl font-bold">
+                  ${averageCost}
+                </span>{' '}
+                /Per Person
+              </Typography>
+            </div>
+            <div>
+              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-orange-100 rounded-t-xl ">
+                <TiWeatherPartlySunny /> Seasonality: {season}
+              </div>
+              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-gray-100 ">
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src="https://i.postimg.cc/q7zxnxhs/download.jpg"
+                  alt=""
+                />{' '}
+                Visitor Per Year: About {visitor}
+              </div>
 
-            <div className="">
-              <div>
-                <div className="join">
-                  <div className="w-32 py-2 border flex justify-center items-center gap-2 text-center bg-gray-100 rounded-l-xl ">
-                    <MdOutlineWatchLater /> {travelTime} Days
-                  </div>
-                  <div className="w-auto border px-2 py-2 flex justify-center items-center gap-2 text-center bg-gray-100 rounded-r-xl ">
-                    <FaLocationDot />
-                    {location}
-                  </div>
+              <div className="join w-full">
+                <div className="w-full lg:w-32 py-2 border flex justify-center items-center gap-2 text-center bg-sky-100 rounded-bl-xl ">
+                  <MdOutlineWatchLater /> {travelTime} Days
+                </div>
+                <div className="w-full border px-2 py-2 flex justify-center items-center gap-2 text-center bg-sky-100  rounded-br-xl ">
+                  <FaLocationDot />
+                  {location}
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-between md:items-center mt-3">
-              <div className="mb-2 w-full md:w-auto text-lg p-2 text-white btn rounded-md bg-teal-900 font-bold ">
-                ${averageCost}/Per Person
-              </div>
+            <div className="w-full mt-3">
               <Link to={`/view-details/${_id}`}>
                 {' '}
-                <div className="mb-2 w-full btn md:w-auto text-lg p-2 text-white rounded-md bg-[#88195f] font-bold ">
+                <Button
+                  size="lg"
+                  className="w-full text-white  bg-[#88195f] hover:bg-blue-500"
+                >
                   View Details
-                </div>
+                </Button>
               </Link>
             </div>
           </div>

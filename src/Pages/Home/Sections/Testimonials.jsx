@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import UseTestimonials from '../../../Components/useHooks/useTestimonials/UseTestimonials';
-import { Button } from '@material-tailwind/react';
+import { Button, Rating } from '@material-tailwind/react';
 
 const Testimonials = () => {
   const { data } = UseTestimonials();
@@ -23,7 +23,7 @@ const Testimonials = () => {
           REVIEW & TESTIMONIALS
         </h3>
 
-        <h1 className="text-5xl font-bold"> Top Reviews for Us</h1>
+        <h1 className="text-5xl font-bold"> Top Reviews For Us</h1>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -48,7 +48,9 @@ const Testimonials = () => {
             <div className="w-full flex px-5 pb-5 flex-col items-center justify-center text-center mx-auto mt-2">
               <h2 className="font-semibold">{testimonial.user}</h2>
               <h2 className="font-semibold">From:{testimonial.location}</h2>
-              <p className=" font-semibold">{testimonial.rating}</p>
+              <p className=" font-semibold">
+                <Rating value={testimonial.rating} className="" />
+              </p>
               <p className=" font-semibold">
                 {testimonial?.comment?.slice(0, 250)}
               </p>

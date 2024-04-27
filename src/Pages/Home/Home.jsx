@@ -1,4 +1,5 @@
 import Banner from './Sections/Banner';
+import CountriesCards from './Sections/CountriesCards';
 import Testimonials from './Sections/Testimonials';
 import TouristSpot from './Sections/TouristSpot';
 import WhyChooseUs from './Sections/WhyChooseUs';
@@ -10,6 +11,7 @@ const Home = () => {
         <Banner></Banner>
         <WhyChooseUs></WhyChooseUs>
         <TouristSpot></TouristSpot>
+        <CountriesCards></CountriesCards>
         <Testimonials></Testimonials>
       </div>
     </div>
