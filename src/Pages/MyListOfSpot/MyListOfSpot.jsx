@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-import UseAllSpotData from '../../useAllSpotData/UseAllSpotData';
+import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotData';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, ScrollRestoration } from 'react-router-dom';
 
 const MyListOfSpot = () => {
-  const { data, isLoading, refetch } = UseAllSpotData();
+  const { data, refetch } = UseAllSpotData();
   const { user } = useContext(AuthContext);
   const [myList, setMyList] = useState([]);
   const email = user?.email;
@@ -43,9 +43,9 @@ const MyListOfSpot = () => {
   };
 
   return (
-    <div className="max-w-7xl container mx-auto px-5 md:px-32 ">
+    <div className="max-w-7xl my-14 container mx-auto px-5 md:px-32 ">
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table ">
           {/* head */}
           <thead>
             <tr>
@@ -63,7 +63,7 @@ const MyListOfSpot = () => {
             {myList?.map((spot, index) => (
               <tr key={spot._id} className="bg-base-200">
                 <th>{index + 1}</th>
-                <td className="w-24 h-24 ">
+                <td className="w-32 h-24 ">
                   <img
                     src={spot?.photo}
                     className="w-full h-full rounded-lg"
@@ -92,6 +92,7 @@ const MyListOfSpot = () => {
           </tbody>
         </table>
       </div>
+      <ScrollRestoration></ScrollRestoration>
     </div>
   );
 };

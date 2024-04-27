@@ -2,23 +2,18 @@ import { CardBody, CardHeader, Typography } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { MdOutlineWatchLater } from 'react-icons/md';
 
 const SingleTouristSpot = ({ spot }) => {
-  console.log(spot);
-
   const {
     _id,
     photo,
     spotName,
     CountryName,
     location,
-    description,
     averageCost,
-    season,
+
     travelTime,
-    visitor,
-    userName,
-    email,
   } = spot;
   return (
     <div className="w-full">
@@ -36,31 +31,42 @@ const SingleTouristSpot = ({ spot }) => {
               alt="ui/ux review check"
             />
 
-            <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 p-2 rounded-t-lg ">
-              <Typography className="text-white font-sm text-sm flex items-center gap-2">
-                <FaLocationDot />
-                {location}
+            <div className="absolute bottom-0 px-2  left-0 bg-black bg-opacity-50 p-2 rounded-tr-lg ">
+              <Typography className="text-white flex items-center gap-2">
+                {CountryName}
               </Typography>
             </div>
           </div>
         </CardHeader>
         <CardBody className="px-3 h-auto  m-0 ">
-          <div className="flex h-full flex-col justify-between">
-            <Typography variant="h4">{spotName?.slice(0, 28)}</Typography>
+          <div className="flex  h-full md:h-[200px] flex-col justify-between">
+            <Typography className="text-2xl font-bold">
+              Enjoy The Beauty Of {spotName}
+            </Typography>
 
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-              <Typography variant="h5">{CountryName}</Typography>
-              <Typography variant="h5">Best Season:{season}</Typography>
+            <div className="">
+              <div>
+                <div className="join">
+                  <div className="w-32 py-2 border flex justify-center items-center gap-2 text-center bg-gray-100 rounded-l-xl ">
+                    <MdOutlineWatchLater /> {travelTime} Days
+                  </div>
+                  <div className="w-auto border px-2 py-2 flex justify-center items-center gap-2 text-center bg-gray-100 rounded-r-xl ">
+                    <FaLocationDot />
+                    {location}
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="flex justify-between items-start md:items-center mt-3">
-              <h3 className="mb-2 text-lg p-2 text-white rounded-md bg-teal-900 font-bold ">
-                About ${averageCost}
-              </h3>
+            <div className="flex flex-col md:flex-row justify-between md:items-center mt-3">
+              <div className="mb-2 w-full md:w-auto text-lg p-2 text-white btn rounded-md bg-teal-900 font-bold ">
+                ${averageCost}/Per Person
+              </div>
               <Link to={`/view-details/${_id}`}>
-                <button className="bg-blue-600 btn mb-2  hover:scale-[110%] duration-500  md:w-auto text-white font-bold hover:bg-blue-gray-900">
-                  View Property
-                </button>
+                {' '}
+                <div className="mb-2 w-full btn md:w-auto text-lg p-2 text-white rounded-md bg-[#88195f] font-bold ">
+                  View Details
+                </div>
               </Link>
             </div>
           </div>

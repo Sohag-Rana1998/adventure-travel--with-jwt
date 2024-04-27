@@ -44,26 +44,26 @@ const ContactUs = () => {
           <input
             type="text"
             placeholder="Name"
-            className="w-full border input"
+            className="w-full border-2 border-purple-400 input"
             name=""
             id=""
           />
           <input
             type="text"
             placeholder="Email"
-            className="w-full border input"
+            className="w-full input border-2 border-purple-400"
             name=""
             id=""
           />
           <textarea
             name=""
             placeholder="Message"
-            className="w-full p-5 textarea"
+            className="w-full p-5 textarea border-2 border-purple-400"
             id=""
             cols="20"
             rows="5"
           ></textarea>
-          <button className="btn rounded-3xl border-2 border-[#331A15] bg-white bg-opacity-20">
+          <button className="btn rounded-3xl border-2 border-purple-400 bg-white bg-opacity-20">
             Send Message
           </button>
         </div>

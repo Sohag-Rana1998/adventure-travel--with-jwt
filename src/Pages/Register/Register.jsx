@@ -10,9 +10,9 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGithub } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import { getAuth, updateProfile } from 'firebase/auth';
-
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import app from '../../../Firebase/firebase.config';
+
 const Register = () => {
   const [type, setType] = useState(false);
   const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =

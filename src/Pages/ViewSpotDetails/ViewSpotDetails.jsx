@@ -79,7 +79,7 @@ const ViewSpotDetails = () => {
         </div>
       </div>
       <div>
-        <Typography variant="h2">{spotName}</Typography>
+        <Typography variant="h2">Spot Name: {spotName}</Typography>
         <Typography
           variant="lead"
           className=" font-lg text-lg flex items-center gap-2 mb-3"
@@ -89,7 +89,7 @@ const ViewSpotDetails = () => {
         </Typography>
       </div>
       <Card>
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col lg:flex-row justify-between items-start">
           <CardHeader
             floated={false}
             shadow={false}
@@ -115,21 +115,19 @@ const ViewSpotDetails = () => {
           <CardBody className="flex w-full flex-col  justify-between h-auto  ">
             <div>
               <div>
+                <Typography color="gray" className=" font-bold text-2xl">
+                  Country: {CountryName}
+                </Typography>
                 <div className="flex flex-col md:flex-row justify-between ">
-                  <Typography color="gray" className=" font-bold text-2xl">
-                    {CountryName}
-                  </Typography>
                   <div>
-                    <div>
-                      <h3 className=" text-2xl text-blue-600  font-bold ">
-                        Average Cost: About ${averageCost}
-                      </h3>
-                      <div className="text-2xl text-blue-600  font-bold">
-                        <span className="font-bold ">
-                          Travel Time: {travelTime} days{' '}
-                        </span>
-                        {}
-                      </div>
+                    <h3 className=" text-2xl text-blue-600  font-bold ">
+                      Average Cost: ${averageCost}/Per Person
+                    </h3>
+                    <div className="text-2xl text-blue-600  font-bold">
+                      <span className="font-bold ">
+                        Travel Time: {travelTime} Days
+                      </span>
+                      {}
                     </div>
                   </div>
                 </div>
