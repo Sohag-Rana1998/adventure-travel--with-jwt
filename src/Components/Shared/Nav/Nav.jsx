@@ -21,13 +21,6 @@ const NavBar = () => {
     }
   };
 
-  const [type, setType] = useState(false);
-  const handleHover = () => {
-    setType(true);
-  };
-  const handleLeave = () => {
-    setType(false);
-  };
   const handleLogout = () => {
     logOut();
     console.log(user);
@@ -188,24 +181,13 @@ const NavBar = () => {
                       }
                       className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
                     />
-                    {themeButton}
+
                     <button
                       onClick={handleLogout}
                       className="btn bg-blue-600 hover:bg-blue-gray-900   mr-3 text-white w-full"
                     >
                       Log Out
                     </button>
-                    {type ? (
-                      <div className="w-auto bg-black bg-opacity-40 z-10 absolute py-4 px-5 rounded-2xl top-16 right-16 ">
-                        <div>
-                          <h2 className="w-full text-white font-bold text-xl">
-                            {user?.displayName || ''}
-                          </h2>
-                        </div>
-                      </div>
-                    ) : (
-                      ''
-                    )}
                   </div>
                 ) : (
                   <div>
@@ -226,11 +208,14 @@ const NavBar = () => {
             </div>
           </ul>
         </div>
-        <Link to={'/'}>
-          <button className="btn btn-ghost  w-52 text-xl font-bold text-blue-600">
-            Travel Zone
-          </button>
-        </Link>
+        <div className="flex justify-between items-center gap-3">
+          <Link to={'/'}>
+            <button className="btn btn-ghost  w-52 text-xl font-bold text-blue-600">
+              Adventure Travel
+            </button>
+          </Link>
+          <div className="block md:hidden">{themeButton}</div>
+        </div>
       </div>
       <div className="navbar-center hidden  lg:flex">
         <ul className="menu menu-horizontal px-1"> {Links}</ul>
@@ -241,33 +226,34 @@ const NavBar = () => {
           {user ? (
             <div className="flex gap-3 justify-between items-center">
               {themeButton}
-              <Avatar
-                onMouseEnter={handleHover}
-                onMouseLeave={handleLeave}
-                src={
-                  (user && user?.photoURL) ||
-                  'https://i.ibb.co/zmbRY07/images.png'
-                }
-                className=" cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
-              />
-
-              <button
-                onClick={handleLogout}
-                className="btn bg-blue-600 hover:bg-blue-gray-900   mr-3 text-white"
-              >
-                Log Out
-              </button>
-              {type ? (
-                <div className="w-auto bg-black bg-opacity-40 z-10 absolute py-3 px-5 rounded-2xl top-16 right-20 ">
-                  <div>
-                    <h2 className="w-full text-white font-bold text-xl">
-                      {user?.displayName || ''}
-                    </h2>
-                  </div>
-                </div>
-              ) : (
-                ''
-              )}
+              <nav className="relative parent ">
+                <ul>
+                  <li>
+                    <Avatar
+                      src={
+                        (user && user?.photoURL) ||
+                        'https://i.ibb.co/zmbRY07/images.png'
+                      }
+                      className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
+                    />
+                    <ul className="dropDown">
+                      <div className="w-auto dropdownMenu duration-500   z-10  py-3 px-5   ">
+                        <div>
+                          <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold text-xl p-2 rounded-md mb-2">
+                            {user?.displayName || ''}
+                          </h2>
+                          <button
+                            onClick={handleLogout}
+                            className="btn hover:bg-blue-500 bg-gray-500   mr-3 text-white"
+                          >
+                            Log Out
+                          </button>
+                        </div>
+                      </div>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
             </div>
           ) : (
             <div>

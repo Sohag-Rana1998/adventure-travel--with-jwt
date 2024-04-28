@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotData';
 import SingleTouristSpot from './SingleTouristSpot';
 import { IoIosArrowDropdown } from 'react-icons/io';
+import { Helmet } from 'react-helmet';
 const AllTouristSpot = () => {
   const { data } = UseAllSpotData();
   const [displayData, setDisplayData] = useState([]);
@@ -40,6 +41,9 @@ const AllTouristSpot = () => {
     </div>
   ) : (
     <div>
+      <Helmet>
+        <title>Adventure Travel | All Tourist Spots</title>
+      </Helmet>
       <div className="text-center ">
         <h3 className="text-xl font-bold underline underline-offset-4">
           MODERN & BEAUTIFUL
@@ -52,7 +56,7 @@ const AllTouristSpot = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn m-1 flex items-center font-bold gap-3 "
+              className="btn m-1 flex border-2 border-blue-500 bg-blue-500 items-center font-bold gap-3 "
             >
               Short By Cost <IoIosArrowDropdown className="text-xl" />
             </div>

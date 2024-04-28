@@ -11,6 +11,7 @@ import PrivateRoute from '../PrivetRoute/PrivateRoute';
 import ViewSpotDetails from '../../Pages/ViewSpotDetails/ViewSpotDetails';
 import UpdateTouristData from '../../Pages/UpdateTouristData/UpdateTouristData';
 import MyListOfSpot from '../../Pages/MyListOfSpot/MyListOfSpot';
+import CountriesSpots from '../../Pages/CoutriesSpots/CountriesSpots';
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             <UpdateTouristData></UpdateTouristData>
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/countries-spots/:CountryName',
+        element: <CountriesSpots></CountriesSpots>,
       },
     ],
   },

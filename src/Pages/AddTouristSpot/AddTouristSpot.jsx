@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 const AddTouristSpot = () => {
   const { user } = useContext(AuthContext);
@@ -67,6 +68,9 @@ const AddTouristSpot = () => {
 
   return (
     <div className="gadgetContainer  my-10">
+      <Helmet>
+        <title>Adventure Travel | Add Tourist Spots</title>
+      </Helmet>
       <div className="shadow-lg rounded-lg   p-5 md:p-8 border border-blue-400">
         {/* Heading */}
         <div className="mt-5 mb-8">

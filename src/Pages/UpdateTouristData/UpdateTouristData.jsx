@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const UpdateTouristData = () => {
   const { id } = useParams();
@@ -74,6 +75,9 @@ const UpdateTouristData = () => {
 
   return (
     <div className="gadgetContainer  my-10">
+      <Helmet>
+        <title>Adventure Travel | Update Tourist Spots</title>
+      </Helmet>
       <div className="shadow-lg rounded-lg   p-5 md:p-8 border border-blue-400">
         {/* Heading */}
         <div className="mt-5 mb-8">

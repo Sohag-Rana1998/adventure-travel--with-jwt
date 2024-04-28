@@ -5,6 +5,7 @@ import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotD
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Link, ScrollRestoration } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const MyListOfSpot = () => {
   const { data, refetch } = UseAllSpotData();
@@ -44,6 +45,9 @@ const MyListOfSpot = () => {
 
   return (
     <div className="max-w-7xl my-14 container mx-auto px-5 md:px-32 ">
+      <Helmet>
+        <title>Adventure Travel | My Tourist Spots List</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table ">
           {/* head */}

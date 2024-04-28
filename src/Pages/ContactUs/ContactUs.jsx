@@ -2,10 +2,14 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { FaLocationDot } from 'react-icons/fa6';
+import { Helmet } from 'react-helmet';
 
 const ContactUs = () => {
   return (
     <div className="w-full container mx-auto py-10">
+      <Helmet>
+        <title>Adventure Travel | Contact Us</title>
+      </Helmet>
       <div className="flex justify-between ">
         <div className="w-full space-y-4">
           <h2 className="text-3xl font-bold text-[#331A15]">Travel Zone</h2>

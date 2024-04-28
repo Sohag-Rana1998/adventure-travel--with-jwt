@@ -51,18 +51,28 @@ const SingleTouristSpot = ({ spot }) => {
               <Typography className="text-2xl ">
                 Enjoy The Beauty Of {spotName}
               </Typography>
-              <Typography className="  ">
-                <span className="text-blue-500 text-xl font-bold">
-                  ${averageCost}
-                </span>{' '}
-                /Per Person
+              <Typography className="text-xl flex items-center gap-2">
+                <FaLocationDot />
+                {location}
               </Typography>
+
+              <div className="flex flex-col md:flex-row items-start justify-between md:items-center">
+                <Typography className="  ">
+                  <span className="text-blue-500 text-xl font-bold">
+                    ${averageCost}
+                  </span>
+                  /Per Person
+                </Typography>
+                <div className="w-full lg:w-32 py-2 border flex justify-center items-center gap-2 text-center bg-black/10  rounded-xl ">
+                  <MdOutlineWatchLater /> {travelTime} Days
+                </div>
+              </div>
             </div>
             <div>
-              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-orange-100 rounded-t-xl ">
+              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center  bg-black/10 rounded-t-xl ">
                 <TiWeatherPartlySunny /> Seasonality: {season}
               </div>
-              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-gray-100 ">
+              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-black/10 ">
                 <img
                   className="w-8 h-8 rounded-full"
                   src="https://i.postimg.cc/q7zxnxhs/download.jpg"
@@ -70,24 +80,14 @@ const SingleTouristSpot = ({ spot }) => {
                 />{' '}
                 Visitor Per Year: About {visitor}
               </div>
-
-              <div className="join w-full">
-                <div className="w-full lg:w-32 py-2 border flex justify-center items-center gap-2 text-center bg-sky-100 rounded-bl-xl ">
-                  <MdOutlineWatchLater /> {travelTime} Days
-                </div>
-                <div className="w-full border px-2 py-2 flex justify-center items-center gap-2 text-center bg-sky-100  rounded-br-xl ">
-                  <FaLocationDot />
-                  {location}
-                </div>
-              </div>
             </div>
 
-            <div className="w-full mt-3">
+            <div className="w-full flex justify-end  mt-3">
               <Link to={`/view-details/${_id}`}>
                 {' '}
                 <Button
                   size="lg"
-                  className="w-full text-white  bg-[#88195f] hover:bg-blue-500"
+                  className="w-full md:w-40 text-white  hover:bg-[#88195f] bg-blue-500"
                 >
                   View Details
                 </Button>

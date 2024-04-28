@@ -1,5 +1,6 @@
-import { Card, CardBody, CardHeader } from '@material-tailwind/react';
+import { Card, CardBody } from '@material-tailwind/react';
 import UseCountryData from '../../../Components/useHooks/UseCountryData/UseCountryData';
+import { Link } from 'react-router-dom';
 
 const CountriesCards = () => {
   const { data } = UseCountryData();
@@ -15,30 +16,33 @@ const CountriesCards = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
         {data?.map(country => (
-          <div
+          <Link
+            to={`/countries-spots/${country.CountryName}`}
             key={country._id}
-            className="w-full h-auto btn p-0 px-0 hover:scale-[105%] hover:opacity-100 duration-700 opacity-80"
           >
-            <Card className="w-full h-full ">
-              <div className="relative">
-                <img
-                  src={country.image_url}
-                  alt=""
-                  className="w-full h-60 rounded-t-2xl "
-                />
-                <h3 className="text-2xl text-white bg-black px-2 py-1 w-auto bg-op absolute top-[50%] left-[40%] font-bold">
-                  {' '}
-                  {country.CountryName}
-                </h3>
-              </div>
-
-              <CardBody className="">
-                <div>
-                  <p>{country.description}</p>
+            {' '}
+            <div className="w-full h-full btn p-0 px-0 hover:scale-[105%] hover:opacity-100 duration-700 opacity-80">
+              <Card className="w-full h-full ">
+                <div className="relative">
+                  <img
+                    src={country.image_url}
+                    alt=""
+                    className="w-full h-60 rounded-t-2xl "
+                  />
+                  <h3 className="text-2xl text-white bg-black/50 rounded-xl  px-2 py-1 w-auto  absolute top-[50%] left-[35%] font-bold">
+                    {' '}
+                    {country.CountryName}
+                  </h3>
                 </div>
-              </CardBody>
-            </Card>
-          </div>
+
+                <CardBody className="">
+                  <div>
+                    <p>{country.description}</p>
+                  </div>
+                </CardBody>
+              </Card>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -11,3 +11,17 @@
 .btn-bg {
   background-color: #0766AD;
 }
+
+nav ul li ul.dropDown {
+  display: none;
+  background-color: #e9edf1;
+  position: absolute;
+  width: 200px;
+  right: -50px;
+  border-radius: 15px;
+}
+
+nav ul li:hover ul.dropDown {
+  display: block;
+  cursor: pointer;
+}

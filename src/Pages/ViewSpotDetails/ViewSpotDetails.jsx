@@ -71,14 +71,16 @@ const ViewSpotDetails = () => {
         <title>Adventure Travel | Details </title>
       </Helmet>
 
-      <div className="h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
+      <div className="h-32 mb-10 md:h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
         <h1 className="text-4xl font-bold text-white animate__animated animate__zoomIn animate__delay__1s">
-          Details About The Spot
+          Details
         </h1>
       </div>
 
       <div>
-        <Typography variant="h2">Spot Name: {spotName}</Typography>
+        <Typography className="text-2xl font-bold">
+          Spot Name: {spotName}
+        </Typography>
         <Typography
           variant="lead"
           className=" font-lg text-lg flex items-center gap-2 mb-3"
