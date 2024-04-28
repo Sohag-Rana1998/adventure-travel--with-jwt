@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Typography,
-} from '@material-tailwind/react';
+import { Button, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -77,41 +71,37 @@ const ViewSpotDetails = () => {
         </h1>
       </div>
 
-      <div>
-        <Typography className="text-2xl font-bold">
-          Spot Name: {spotName}
-        </Typography>
-        <Typography
-          variant="lead"
-          className=" font-lg text-lg flex items-center gap-2 mb-3"
-        >
-          <FaLocationDot />
-          {location}
-        </Typography>
-      </div>
-      <Card>
-        <div className="flex flex-col lg:flex-row justify-between items-start">
-          <CardHeader
-            floated={false}
-            shadow={false}
-            color="transparent"
-            className="m-0 w-full p-0 rounded-none"
-          >
-            <div className="relative">
+      <div className="h-auto">
+        <div className="flex flex-col lg:flex-row justify-between gap-5 items-start">
+          <div color="transparent" className="m-0 w-full p-0 rounded-none">
+            <div className="relative overflow-hidden  h-96">
               <img
                 src={photo}
-                className="w-full rounded-2xl  h-96 hover:scale-[110%] duration-700"
+                className="w-full rounded-2xl  h-full hover:scale-[110%] duration-700"
                 alt="ui/ux review check"
               />
             </div>
-          </CardHeader>
+          </div>
 
-          <CardBody className="flex w-full flex-col  justify-between h-auto  ">
+          <div className="flex w-full flex-col  justify-between h-auto  ">
             <div>
               <div>
-                <Typography color="gray" className=" font-bold text-2xl">
-                  Country: {CountryName}
-                </Typography>
+                <div>
+                  <Typography className="text-2xl font-bold">
+                    Spot Name: {spotName}
+                  </Typography>
+                  <Typography color="gray" className=" font-bold text-xl">
+                    Country: {CountryName}
+                  </Typography>
+                  <Typography
+                    variant="lead"
+                    className=" font-lg text-lg flex items-center gap-2 mb-3"
+                  >
+                    <FaLocationDot />
+                    {location}
+                  </Typography>
+                </div>
+
                 <div className="flex flex-col md:flex-row justify-between ">
                   <div>
                     <h3 className=" text-2xl text-blue-600  font-bold ">
@@ -163,9 +153,9 @@ const ViewSpotDetails = () => {
                 Book Now
               </Button>
             </div>
-          </CardBody>
+          </div>
         </div>
-      </Card>
+      </div>
       <ScrollRestoration />
     </div>
   );

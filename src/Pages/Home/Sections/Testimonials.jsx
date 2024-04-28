@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import UseTestimonials from '../../../Components/useHooks/useTestimonials/UseTestimonials';
 import { Button, Rating } from '@material-tailwind/react';
+import { Slide } from 'react-awesome-reveal';
 
 const Testimonials = () => {
   const { data } = UseTestimonials();
@@ -19,11 +20,13 @@ const Testimonials = () => {
   return (
     <div className="my-10">
       <div className="text-center mb-5">
-        <h3 className="text-xl font-bold underline underline-offset-4">
-          REVIEW & TESTIMONIALS
-        </h3>
+        <Slide cascade>
+          <h3 className="text-xl font-bold underline underline-offset-4">
+            REVIEW & TESTIMONIALS
+          </h3>
 
-        <h1 className="text-5xl font-bold"> Top Reviews For Us</h1>
+          <h1 className="text-5xl font-bold"> Top Reviews For Us</h1>
+        </Slide>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

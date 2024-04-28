@@ -1,6 +1,7 @@
 import { Card, CardBody } from '@material-tailwind/react';
 import UseCountryData from '../../../Components/useHooks/UseCountryData/UseCountryData';
 import { Link } from 'react-router-dom';
+import { Zoom } from 'react-awesome-reveal';
 
 const CountriesCards = () => {
   const { data } = UseCountryData();
@@ -9,10 +10,12 @@ const CountriesCards = () => {
   return (
     <div className="w-full mx-auto">
       <div className="text-center mb-5">
-        <h3 className="text-xl font-bold underline underline-offset-4">
-          EXPLORE A DIFFERENT WAY TO TRAVEL
-        </h3>
-        <h1 className="text-5xl font-bold"> Top destinations in South Asia</h1>
+        <Zoom cascade>
+          <h3 className="text-xl font-bold underline underline-offset-4">
+            EXPLORE A DIFFERENT WAY TO TRAVEL
+          </h3>
+          <h1 className="text-5xl font-bold">Top destinations in South Asia</h1>
+        </Zoom>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
         {data?.map(country => (

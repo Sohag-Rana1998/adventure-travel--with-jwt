@@ -2,6 +2,7 @@ import { Button } from '@material-tailwind/react';
 import UseAllSpotData from '../../../Components/useHooks/useAllSpotData/UseAllSpotData';
 import SingleTouristSpot from '../../AllTouristSpot/SingleTouristSpot';
 import { Link } from 'react-router-dom';
+import { Slide } from 'react-awesome-reveal';
 
 const TouristSpot = () => {
   const { data } = UseAllSpotData();
@@ -9,10 +10,12 @@ const TouristSpot = () => {
   return (
     <div className="mt-10">
       <div className="text-center mb-5">
-        <h3 className="text-xl font-bold underline underline-offset-4">
-          MODERN & BEAUTIFUL
-        </h3>
-        <h1 className="text-5xl font-bold">Our Most Popular Adventures</h1>
+        <Slide cascade>
+          <h3 className="text-xl font-bold underline underline-offset-4">
+            MODERN & BEAUTIFUL
+          </h3>
+          <h1 className="text-5xl font-bold">Our Most Popular Adventures</h1>
+        </Slide>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {data?.slice(0, 9)?.map(spot => (
