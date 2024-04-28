@@ -11,35 +11,35 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <div className="max-w-screen-2xl container mx-auto bg-base-200  text-white  ">
-      <footer className=" max-w-7xl mx-auto p-5">
+    <div className="max-w-screen-2xl  container mx-auto bg-black/30  text-white  ">
+      <footer className=" max-w-7xl mx-auto p-10">
         <div className="">
           <div className="flex flex-col lg:flex-row justify-between items-center text-center ">
             <div className="text-3xl flex flex-col items-center font-bold text-light-blue-600">
               <img
-                className="w-32 h-24"
+                className="w-32 h-24 rounded-md"
                 src="https://i.postimg.cc/JzYG4pvL/studio-pc-2331-47.jpg"
                 alt=""
               />
               <h2 className="text-2xl font-bold">Adventure Travel</h2>
             </div>
-            <footer className="footer p-10  text-base-content">
-              <nav>
-                <h6 className="footer-title">Services</h6>
+            <footer className="flex w-full md:w-[60%] justify-between p-5 flex-col md:flex-row  text-center  text-base-content gap-5">
+              <nav className="flex flex-col">
+                <h6 className="footer-title text-xl">Services</h6>
                 <a className="link link-hover">Branding</a>
                 <a className="link link-hover">Design</a>
                 <a className="link link-hover">Marketing</a>
                 <a className="link link-hover">Advertisement</a>
               </nav>
-              <nav>
-                <h6 className="footer-title">Company</h6>
+              <nav className="flex flex-col">
+                <h6 className="footer-title text-xl">Company</h6>
                 <a className="link link-hover">About us</a>
                 <a className="link link-hover">Contact</a>
                 <a className="link link-hover">Jobs</a>
                 <a className="link link-hover">Press kit</a>
               </nav>
-              <nav>
-                <h6 className="footer-title">Legal</h6>
+              <nav className="flex flex-col">
+                <h6 className="footer-title text-xl">Legal</h6>
                 <a className="link link-hover">Terms of use</a>
                 <a className="link link-hover">Privacy policy</a>
                 <a className="link link-hover">Cookie policy</a>
@@ -52,7 +52,7 @@ const Footer = () => {
               className="mb-4 text-black text-center font-normal  md:mb-0"
             >
               &copy; {currentYear}{' '}
-              <a href="https://material-tailwind.com/">RESIDENCE HUB</a>. All
+              <a href="https://material-tailwind.com/">Adventure Travel</a>. All
               Rights Reserved.
             </Typography>
             <div className="flex gap-4 sm:justify-center">

@@ -28,15 +28,19 @@ const MyListOfSpot = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/tourist-spot/${id}`).then(data => {
-          console.log(data);
-          Swal.fire({
-            title: 'Deleted!',
-            text: 'User data has been deleted.',
-            icon: 'success',
+        axios
+          .delete(
+            `https://travel-zone-server-side.vercel.app/tourist-spot/${id}`
+          )
+          .then(data => {
+            console.log(data);
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'User data has been deleted.',
+              icon: 'success',
+            });
+            refetch();
           });
-          refetch();
-        });
       }
     });
   };

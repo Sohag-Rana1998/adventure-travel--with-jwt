@@ -46,7 +46,7 @@ const AddTouristSpot = () => {
         email,
       };
       console.log(addTouristSpot);
-      fetch('http://localhost:5000/add-tourist-spot', {
+      fetch('https://travel-zone-server-side.vercel.app/add-tourist-spot', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

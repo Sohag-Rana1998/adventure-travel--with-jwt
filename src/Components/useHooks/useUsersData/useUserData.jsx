@@ -8,7 +8,9 @@ const useUserData = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['userData'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/email/${email}`);
+      const res = await fetch(
+        `https://travel-zone-server-side.vercel.app/email/${email}`
+      );
       const data = await res.json();
       return data;
     },

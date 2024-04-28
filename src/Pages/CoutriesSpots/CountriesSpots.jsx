@@ -12,9 +12,11 @@ const CountriesSpots = () => {
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/country/${CountryName}`).then(data => {
-      setSpots(data.data);
-    });
+    axios
+      .get(`https://travel-zone-server-side.vercel.app/country/${CountryName}`)
+      .then(data => {
+        setSpots(data.data);
+      });
   }, [CountryName]);
   console.log(spots);
 

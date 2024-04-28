@@ -15,9 +15,11 @@ const UpdateTouristData = () => {
   const [spot, setSpot] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/tourist-spot/${id}`).then(data => {
-      setSpot(data.data);
-    });
+    axios
+      .get(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`)
+      .then(data => {
+        setSpot(data.data);
+      });
   }, [id]);
 
   const {
@@ -60,7 +62,7 @@ const UpdateTouristData = () => {
       email,
     };
     console.log(UpdateTouristSpot);
-    fetch(`http://localhost:5000/tourist-spot/${id}`, {
+    fetch(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

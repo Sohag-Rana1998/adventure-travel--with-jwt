@@ -11,9 +11,11 @@ const ViewSpotDetails = () => {
   const [spot, setSpot] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/tourist-spot/${id}`).then(data => {
-      setSpot(data.data);
-    });
+    axios
+      .get(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`)
+      .then(data => {
+        setSpot(data.data);
+      });
   }, [id]);
 
   // Save to local storage:
