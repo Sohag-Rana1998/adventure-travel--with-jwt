@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import { ScrollRestoration } from 'react-router-dom';
 import { useTypewriter } from 'react-simple-typewriter';
 const AllTouristSpot = () => {
-  const { data } = UseAllSpotData();
+  const { data, isLoading } = UseAllSpotData();
   const [displayData, setDisplayData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -51,7 +51,7 @@ const AllTouristSpot = () => {
     onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
 
-  return loading ? (
+  return isLoading || loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
     </div>

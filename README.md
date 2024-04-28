@@ -2,10 +2,12 @@
 
 ## WEBSITE LINK: https://travel-zone-client-side.web.app/
 
+### My selected Category Name is: Southeast Asia.
+
 ##### Packages i have used in my website:
 
 1. React-simple-typewriter,
-2. React Awesomereveal,
+2. React Awesome reveal,
 
 ### Features and Characteristics Of My Website:
 

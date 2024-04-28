@@ -20,13 +20,21 @@ const CountriesSpots = () => {
   }, [CountryName]);
   console.log(spots);
 
-  return (
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 1000, false);
+  }, []);
+  return loading ? (
+    <div className="w-full min-h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  ) : (
     <div>
       <Helmet>
         <title>Adventure Travel | Countries Tourist Spots</title>
       </Helmet>
       <div className="h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
-        <h1 className="text-4xl font-bold text-white animate__animated animate__zoomIn animate__delay__1s">
+        <h1 className="text-4xl font-bold text-white text-center">
           Explore The Unseen Of {CountryName}
         </h1>
       </div>

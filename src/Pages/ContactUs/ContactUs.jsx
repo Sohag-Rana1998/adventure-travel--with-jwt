@@ -5,14 +5,23 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { Helmet } from 'react-helmet';
 import { ScrollRestoration } from 'react-router-dom';
 import { Fade, Zoom } from 'react-awesome-reveal';
+import { useEffect, useState } from 'react';
 
 const ContactUs = () => {
-  return (
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 500, false);
+  }, []);
+  return loading ? (
+    <div className="w-full min-h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  ) : (
     <div className="w-full container mx-auto py-10">
       <Helmet>
         <title>Adventure Travel | Contact Us</title>
       </Helmet>
-      <div className="flex flex-col md:flex-row justify-between ">
+      <div className="flex flex-col md:flex-row justify-between gap-5">
         <div className="w-full space-y-4">
           <Fade cascade>
             <h2 className="text-3xl font-bold">Adventure Travel</h2>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet';
@@ -28,7 +28,8 @@ const AddTouristSpot = () => {
     if (email == 'Not Found') {
       Swal.fire({
         icon: 'error',
-        title: 'Please Log In With Your Valid Email Address And Try Again.',
+        title:
+          'Email Address Not Found ! Please Log In With Your Valid Email Address And Try Again.',
         showConfirmButton: true,
       });
     } else {
@@ -66,8 +67,15 @@ const AddTouristSpot = () => {
         });
     }
   };
-
-  return (
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 500, false);
+  }, []);
+  return loading ? (
+    <div className="w-full min-h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  ) : (
     <div className="gadgetContainer  my-10">
       <Helmet>
         <title>Adventure Travel | Add Tourist Spots</title>
@@ -220,6 +228,7 @@ const AddTouristSpot = () => {
                 placeholder="User Name"
                 id="userName"
                 name="userName"
+                disabled
                 defaultValue={userName}
               />
             </div>
