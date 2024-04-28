@@ -1,5 +1,7 @@
 import { EffectFade, Autoplay } from 'swiper/modules';
 
+import { useTypewriter } from 'react-simple-typewriter';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -7,6 +9,20 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 
 const Banner = () => {
+  const [text] = useTypewriter({
+    words: ['Experience The Unseen!'],
+    loop: 3,
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
+  const [text2] = useTypewriter({
+    words: ['Discover The World!'],
+    loop: 3,
+    typeSpeed: 50,
+    deleteSpeed: 50,
+
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
+
   return (
     <div className="max-w-7xl w-full container mx-auto  lg:h-[500px]  bg-gradient-to-r from-[#F9F3F0] from-10% via-[#FCE7DC] via-30% to-[#F9F3F0] to-90% dark:bg-gradient-to-r dark:from-[#f2f2d8] dark:from-10% dark:via-[#FCE7DC] dark:via-30% dark:to-[#fae1d4]">
       <Swiper
@@ -16,7 +32,7 @@ const Banner = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectFade]}
@@ -28,11 +44,11 @@ const Banner = () => {
             <div className="h-full w-full flex justify-center items-center">
               <div className="flex flex-col text-white justify-center items-center ">
                 <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
-                  Experience The Unseen!
+                  <span>{text}</span>
                 </p>
 
                 <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
-                  Explore the world With Us
+                  {text2}
                 </p>
                 <p className="font-medium  md:text-lg text-center text-white">
                   Find awesome flights, hotel, tour, car and packages

@@ -4,6 +4,7 @@ import SingleTouristSpot from './SingleTouristSpot';
 import { IoIosArrowDropdown } from 'react-icons/io';
 import { Helmet } from 'react-helmet';
 import { ScrollRestoration } from 'react-router-dom';
+import { useTypewriter } from 'react-simple-typewriter';
 const AllTouristSpot = () => {
   const { data } = UseAllSpotData();
   const [displayData, setDisplayData] = useState([]);
@@ -36,6 +37,20 @@ const AllTouristSpot = () => {
     console.log(shortData2);
   };
 
+  const [text] = useTypewriter({
+    words: ['MODERN & BEAUTIFUL'],
+    loop: 1,
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
+  const [text2] = useTypewriter({
+    words: ['Our Most Popular Adventures Here'],
+    loop: 1,
+    typeSpeed: 50,
+    deleteSpeed: 50,
+
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
+
   return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
@@ -47,9 +62,9 @@ const AllTouristSpot = () => {
       </Helmet>
       <div className="text-center ">
         <h3 className="text-xl font-bold underline underline-offset-4">
-          MODERN & BEAUTIFUL
+          {text}
         </h3>
-        <h1 className="text-5xl font-bold">Our Most Popular Adventures</h1>
+        <h1 className="text-5xl font-bold">{text2}</h1>
       </div>
       <div className="w-full flex justify-end mb-5">
         <div className="mr-4 w-52 md:mr-10">

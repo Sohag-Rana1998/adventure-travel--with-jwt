@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import useUserData from '../../Components/useHooks/useUsersData/useUserData';
+import { Slide } from 'react-awesome-reveal';
 
 const MyListOfSpot = () => {
   const { data, refetch } = useUserData();
@@ -41,12 +42,16 @@ const MyListOfSpot = () => {
   };
 
   return (
-    <div className="max-w-7xl my-10 container mx-auto px-5 md:px-32 ">
+    <div className="max-w-7xl container mx-auto px-5 md:px-32 ">
       <Helmet>
         <title>Adventure Travel | My Tourist Spots List</title>
       </Helmet>
-      <div className="text-center my-7">
-        <h1 className="text-5xl font-bold">My Tourist Spots List</h1>
+      <div className="h-32 mb-10 md:h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
+        <Slide>
+          <h1 className="text-2xl md:text-4xl font-bold text-white">
+            My Tourist Spots List
+          </h1>
+        </Slide>
       </div>
 
       <div className="overflow-x-auto">

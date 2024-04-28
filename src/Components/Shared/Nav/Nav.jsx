@@ -33,7 +33,7 @@ const NavBar = () => {
           onChange={handleToggle}
           type="checkbox"
           value="synthwave"
-          className="toggle theme-controller h-8 w-20 bg-orange-500 row-start-1 col-start-1 col-span-2"
+          className="toggle theme-controller h-7 md:h-8 w-16 bg-orange-500 row-start-1 col-start-1 col-span-2"
         />
         <svg
           className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
@@ -207,9 +207,9 @@ const NavBar = () => {
             </div>
           </ul>
         </div>
-        <div className="flex justify-between items-center gap-3">
+        <div className="flex justify-between items-center ">
           <Link to={'/'}>
-            <button className="btn btn-ghost  w-52 text-xl font-bold text-blue-600">
+            <button className=" py-2 rounded-xl w-44 text-xl font-bold text-blue-600">
               Adventure Travel
             </button>
           </Link>
