@@ -1,28 +1,22 @@
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from 'react-router-dom';
 import SingleTouristSpot from '../AllTouristSpot/SingleTouristSpot';
-import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotData';
+
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const CountriesSpots = () => {
   const { CountryName } = useParams();
-  const { data } = UseAllSpotData();
+
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
-    const newData = data?.filter(spot => spot.CountryName == CountryName);
-    console.log(newData);
-    setSpots(newData);
-  }, [CountryName, data]);
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/tourist-spot/${CountryName}`)
-  //     .then(data => {
-  //       setSpots(data.data);
-  //     });
-  // }, [CountryName]);
-  // console.log(spots);
+    axios.get(`http://localhost:5000/country/${CountryName}`).then(data => {
+      setSpots(data.data);
+    });
+  }, [CountryName]);
+  console.log(spots);
 
   return (
     <div>
@@ -39,6 +33,7 @@ const CountriesSpots = () => {
           <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
         ))}
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

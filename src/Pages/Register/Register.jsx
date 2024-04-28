@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, ScrollRestoration, useNavigate } from 'react-router-dom';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@material-tailwind/react';
@@ -263,7 +263,8 @@ const Register = () => {
           </Button>
         </div>
       </div>
-      <ToastContainer></ToastContainer>
+        <ToastContainer></ToastContainer>
+        <ScrollRestoration/>
     </div>
   );
 };

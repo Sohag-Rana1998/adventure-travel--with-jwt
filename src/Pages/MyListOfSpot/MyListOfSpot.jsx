@@ -1,23 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { useEffect, useState } from 'react';
 
-import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotData';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import useUserData from '../../Components/useHooks/useUsersData/useUserData';
 
 const MyListOfSpot = () => {
-  const { data, refetch } = UseAllSpotData();
-  const { user } = useContext(AuthContext);
+  const { data, refetch } = useUserData();
+
   const [myList, setMyList] = useState([]);
-  const email = user?.email;
 
   useEffect(() => {
-    const userData = data?.filter(spot => spot.email == email);
-    console.log(userData);
-    setMyList(userData);
-  }, [data, email]);
+    setMyList(data);
+    refetch();
+  }, [data, refetch]);
 
   const handleDelete = id => {
     Swal.fire({
@@ -44,10 +41,14 @@ const MyListOfSpot = () => {
   };
 
   return (
-    <div className="max-w-7xl my-14 container mx-auto px-5 md:px-32 ">
+    <div className="max-w-7xl my-10 container mx-auto px-5 md:px-32 ">
       <Helmet>
         <title>Adventure Travel | My Tourist Spots List</title>
       </Helmet>
+      <div className="text-center my-7">
+        <h1 className="text-5xl font-bold">My Tourist Spots List</h1>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table ">
           {/* head */}
@@ -76,7 +77,7 @@ const MyListOfSpot = () => {
                 </td>
                 <td>{spot?.spotName}</td>
                 <td>{spot.CountryName}</td>
-                <td>{spot.averageCost}</td>
+                <td>${spot.averageCost}</td>
 
                 <td>
                   <Link to={`/update-tourist-data/${spot._id}`}>
@@ -96,7 +97,7 @@ const MyListOfSpot = () => {
           </tbody>
         </table>
       </div>
-      <ScrollRestoration></ScrollRestoration>
+      <ScrollRestoration />
     </div>
   );
 };

@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const UpdateTouristData = () => {
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  const userName = user?.displayName;
+  console.log(email, userName);
   const { id } = useParams();
   const [spot, setSpot] = useState({});
 
@@ -51,6 +56,8 @@ const UpdateTouristData = () => {
       season,
       travelTime,
       visitor,
+      userName,
+      email,
     };
     console.log(UpdateTouristSpot);
     fetch(`http://localhost:5000/tourist-spot/${id}`, {
@@ -233,6 +240,7 @@ const UpdateTouristData = () => {
           />
         </form>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

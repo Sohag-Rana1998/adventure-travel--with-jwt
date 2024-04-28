@@ -33,13 +33,13 @@ const NavBar = () => {
           onChange={handleToggle}
           type="checkbox"
           value="synthwave"
-          className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
+          className="toggle theme-controller h-8 w-20 bg-orange-500 row-start-1 col-start-1 col-span-2"
         />
         <svg
           className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
           xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -191,14 +191,13 @@ const NavBar = () => {
                   </div>
                 ) : (
                   <div>
-                    {themeButton}
                     <Link to={'/login'}>
-                      <button className="btn btn-bg mr-3 text-white">
+                      <button className="btn w-40 btn-bg mr-3 text-white">
                         Log In
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className="btn btn-bg mr-3 text-white">
+                      <button className="btn w-40 btn-bg mr-3 text-white">
                         Register
                       </button>
                     </Link>
@@ -256,7 +255,7 @@ const NavBar = () => {
               </nav>
             </div>
           ) : (
-            <div>
+            <div className="flex items-center gap-3">
               {themeButton}
               <Link to={'/login'}>
                 <button className="btn btn-bg mr-3 text-white">Log In</button>

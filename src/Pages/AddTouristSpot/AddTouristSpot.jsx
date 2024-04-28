@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet';
+import { ScrollRestoration } from 'react-router-dom';
 
 const AddTouristSpot = () => {
   const { user } = useContext(AuthContext);
@@ -57,7 +58,7 @@ const AddTouristSpot = () => {
           console.log(data);
           Swal.fire({
             icon: 'success',
-            title: 'Coffee Added Successfully',
+            title: 'Tourist spot Added Successfully',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -243,6 +244,7 @@ const AddTouristSpot = () => {
           />
         </form>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

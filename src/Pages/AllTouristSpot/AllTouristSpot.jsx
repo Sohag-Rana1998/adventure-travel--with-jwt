@@ -3,6 +3,7 @@ import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotD
 import SingleTouristSpot from './SingleTouristSpot';
 import { IoIosArrowDropdown } from 'react-icons/io';
 import { Helmet } from 'react-helmet';
+import { ScrollRestoration } from 'react-router-dom';
 const AllTouristSpot = () => {
   const { data } = UseAllSpotData();
   const [displayData, setDisplayData] = useState([]);
@@ -79,6 +80,7 @@ const AllTouristSpot = () => {
           <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
         ))}
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

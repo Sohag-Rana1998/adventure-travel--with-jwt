@@ -3,6 +3,7 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { FaLocationDot } from 'react-icons/fa6';
 import { Helmet } from 'react-helmet';
+import { ScrollRestoration } from 'react-router-dom';
 
 const ContactUs = () => {
   return (
@@ -10,9 +11,9 @@ const ContactUs = () => {
       <Helmet>
         <title>Adventure Travel | Contact Us</title>
       </Helmet>
-      <div className="flex justify-between ">
+      <div className="flex flex-col md:flex-row justify-between ">
         <div className="w-full space-y-4">
-          <h2 className="text-3xl font-bold text-[#331A15]">Travel Zone</h2>
+          <h2 className="text-3xl font-bold">Adventure Travel</h2>
           <p>
             Always ready to be your friend. Come & Contact with us to share your{' '}
             <br />
@@ -25,9 +26,7 @@ const ContactUs = () => {
             <FaLinkedin></FaLinkedin>
           </div>
           <div className=" space-y-3">
-            <h1 className="text-3xl mt-10 font-bold text-[#331A15]">
-              Get In Touch
-            </h1>
+            <h1 className="text-3xl mt-10 font-bold ">Get In Touch</h1>
             <div className="flex items-center gap-5">
               <FaPhoneAlt></FaPhoneAlt>
               <p>+88 01533 333 333</p>
@@ -43,7 +42,7 @@ const ContactUs = () => {
           </div>
         </div>
         <div className="w-full space-y-4">
-          <h2 className="text-3xl font-bold text-[#331A15]">Connect with Us</h2>
+          <h2 className="text-3xl font-bold ">Connect with Us</h2>
 
           <input
             type="text"
@@ -72,6 +71,7 @@ const ContactUs = () => {
           </button>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };
