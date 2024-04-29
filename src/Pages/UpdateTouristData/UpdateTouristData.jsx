@@ -13,13 +13,16 @@ const UpdateTouristData = () => {
   console.log(email, userName);
   const { id } = useParams();
   const [spot, setSpot] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`)
       .then(data => {
         setSpot(data.data);
       });
+    setTimeout(setLoading, 500, false);
   }, [id]);
 
   const {
@@ -36,6 +39,7 @@ const UpdateTouristData = () => {
 
   const handleUpdateSpot = e => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const photo = form.photo.value;
     const spotName = form.spot.value;
@@ -62,6 +66,7 @@ const UpdateTouristData = () => {
       email,
     };
     console.log(UpdateTouristSpot);
+
     fetch(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`, {
       method: 'PATCH',
       headers: {
@@ -72,17 +77,30 @@ const UpdateTouristData = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        Swal.fire({
-          icon: 'success',
-          title: 'Successfully Updated Your Tourist Spot Data',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        form.reset();
+
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully Updated Your Tourist Spot Data',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(setLoading, 500, false);
+          form.reset();
+        } else {
+          Swal.fire({
+            title: 'Please Make Some Changes To Update Your Tourists Spot Data',
+            showConfirmButton: true,
+          });
+        }
       });
   };
 
-  return (
+  return loading ? (
+    <div className="w-full min-h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  ) : (
     <div className="gadgetContainer  my-10">
       <Helmet>
         <title>Adventure Travel | Update Tourist Spots</title>

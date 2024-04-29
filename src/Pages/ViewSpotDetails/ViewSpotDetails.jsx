@@ -55,6 +55,8 @@ const ViewSpotDetails = () => {
     season,
     travelTime,
     visitor,
+    userName,
+    email,
   } = spot;
 
   return loading ? (
@@ -76,7 +78,7 @@ const ViewSpotDetails = () => {
       <div className="h-auto">
         <div className="flex flex-col lg:flex-row justify-between gap-5 items-start">
           <div color="transparent" className="m-0 w-full p-0 rounded-none">
-            <div className="relative overflow-hidden  h-96">
+            <div className="relative overflow-hidden  h-[450px]">
               <img
                 src={photo}
                 className="w-full rounded-2xl  h-full hover:scale-[110%] duration-700"
@@ -145,6 +147,10 @@ const ViewSpotDetails = () => {
               >
                 <span className="font-bold">Best Season: {season} </span>
               </Typography>
+              <div>
+                <h4>Added by: {userName}</h4>
+                <h4>Email: {email}</h4>
+              </div>
             </div>
             <div className="flex flex-col md:flex-row justify-end  r mt-3">
               <Button

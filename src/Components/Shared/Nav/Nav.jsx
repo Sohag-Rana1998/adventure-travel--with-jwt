@@ -95,7 +95,7 @@ const NavBar = () => {
               : ''
           }
         >
-          All Tourist Spot
+          All Tourists Spot
         </NavLink>
       </li>
       <li>
@@ -109,7 +109,7 @@ const NavBar = () => {
               : ''
           }
         >
-          Add Tourist Spot
+          Add Tourists Spot
         </NavLink>
       </li>
       <li>
@@ -226,7 +226,7 @@ const NavBar = () => {
             <div className="flex gap-3 justify-between items-center">
               {themeButton}
               <nav className="relative parent ">
-                <ul>
+                <ul className="flex items-start gap-2">
                   <li>
                     <Avatar
                       src={
@@ -241,16 +241,16 @@ const NavBar = () => {
                           <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold text-xl p-2 rounded-md mb-2">
                             {user?.displayName || ''}
                           </h2>
-                          <button
-                            onClick={handleLogout}
-                            className="btn hover:bg-blue-500 bg-gray-500   mr-3 text-white"
-                          >
-                            Log Out
-                          </button>
                         </div>
                       </div>
                     </ul>
                   </li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-bg hover:bg-gray-500   mr-3 text-white"
+                  >
+                    Log Out
+                  </button>
                 </ul>
               </nav>
             </div>

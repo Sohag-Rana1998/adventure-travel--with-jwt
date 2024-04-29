@@ -26,13 +26,13 @@ const Register = () => {
     const password = e.target.password.value;
 
     if (!/[A-Z]/.test(password)) {
-      toast.warn('Your Password should have one uppercase letter.');
+      toast.warn('Your Password Should Have One Uppercase Letter.');
       return;
     } else if (!/[a-z]/.test(password)) {
-      toast.warn('Your Password should have one lowercase letter.');
+      toast.warn('Your Password Should Have One Lowercase Letter.');
       return;
     } else if (password.length < 6) {
-      toast.warn('Password Must be minimum 06 character.');
+      toast.warn('Password Must Be Minimum 06 Character.');
       return;
     }
     console.log(name, email, photo, password);
@@ -263,8 +263,19 @@ const Register = () => {
           </Button>
         </div>
       </div>
-        <ToastContainer></ToastContainer>
-        <ScrollRestoration/>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
+      <ScrollRestoration />
     </div>
   );
 };

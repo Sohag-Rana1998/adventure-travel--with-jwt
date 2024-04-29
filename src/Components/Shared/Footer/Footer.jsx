@@ -58,32 +58,32 @@ const Footer = () => {
             <div className="flex gap-4 sm:justify-center">
               <Typography
                 as="a"
-                className="opacity-80 text-black text-2xl font-bold transition-opacity hover:opacity-100"
+                className="opacity-80 text-black text-2xl font-bold transition-opacity cursor-pointer hover:scale-[105%] hover:opacity-100"
               >
                 <FaFacebook></FaFacebook>
               </Typography>
               <Typography
                 as="a"
-                className="opacity-80 text-black text-2xl font-bold transition-opacity hover:opacity-100"
+                className="opacity-80 text-black text-2xl font-bold transition-opacity cursor-pointer hover:scale-[105%] hover:opacity-100"
               >
                 <FaInstagram></FaInstagram>
               </Typography>
               <Typography
                 as="a"
-                className="opacity-80 text-black text-2xl font-bold transition-opacity hover:opacity-100"
+                className="opacity-80 text-black text-2xl font-bold transition-opacity cursor-pointer hover:scale-[105%] hover:opacity-100"
               >
                 {' '}
                 <FaGithub></FaGithub>
               </Typography>
               <Typography
                 as="a"
-                className="opacity-80 text-black text-2xl font-bold transition-opacity hover:opacity-100"
+                className="opacity-80 text-black text-2xl font-bold transition-opacity cursor-pointer hover:scale-[105%] hover:opacity-100"
               >
                 <FaTwitter></FaTwitter>
               </Typography>
               <Typography
                 as="a"
-                className="opacity-80 text-black text-2xl font-bold transition-opacity hover:opacity-100"
+                className="opacity-80 cursor-pointer text-black text-2xl font-bold transition-opacity hover:opacity-100"
               >
                 <FaLinkedin></FaLinkedin>
               </Typography>
