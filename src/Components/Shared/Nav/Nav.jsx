@@ -4,16 +4,25 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const NavBar = () => {
+  const localTheme = localStorage.getItem('theme');
   const { user, logOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localTheme);
+  const [type, setType] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
     const localTheme = localStorage.getItem('theme');
+    if (localTheme == 'synthwave') {
+      setType(true);
+    } else {
+      setType(false);
+    }
     document.querySelector('html').setAttribute('data-theme', localTheme);
   }, [theme]);
 
   const handleToggle = e => {
+    setType(!type);
+    console.log(type);
     if (e.target.checked) {
       setTheme('synthwave');
     } else {
@@ -34,6 +43,7 @@ const NavBar = () => {
           type="checkbox"
           value="synthwave"
           className="toggle theme-controller h-7 md:h-8 w-16 bg-orange-500 row-start-1 col-start-1 col-span-2"
+          checked={type}
         />
         <svg
           className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
