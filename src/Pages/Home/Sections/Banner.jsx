@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import { Button } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   const [text] = useTypewriter({
@@ -55,12 +57,12 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <button className="bg-orange-500 py-2 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                    <span className="mr-3">
-                      <i className="bx bx-hive"></i>
-                    </span>
-                    Explore Now
-                  </button>
+                  <Link to={'/all-tourist-spot'}>
+                    {' '}
+                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -85,12 +87,12 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <button className="bg-orange-500 py-2 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                    <span className="mr-3">
-                      <i className="bx bx-hive"></i>
-                    </span>
-                    Explore Now
-                  </button>
+                  <Link to={'/all-tourist-spot'}>
+                    {' '}
+                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -103,8 +105,8 @@ const Banner = () => {
           <div className=" w-full bg-[url(https://i.postimg.cc/QCr5qk6T/cameron-highlands-trail.jpg)] bg-no-repeat bg-center bg-cover h-full">
             <div className="h-full w-full flex justify-center items-center">
               <div className="flex flex-col justify-center items-center ">
-                <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
-                  Your Trusted Holiday Partner
+                <p className="font-semibold uppercase  mb-3 text-center md:text-left text-white border-b-4  ">
+                  Experience The New
                 </p>
 
                 <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
@@ -115,9 +117,12 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <button className="bg-[#FF497C] py-2 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                    Explore Now
-                  </button>
+                  <Link to={'/all-tourist-spot'}>
+                    {' '}
+                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -142,12 +147,12 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <button className="bg-[#FF497C] py-2 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                    <span className="mr-3">
-                      <i className="bx bx-hive"></i>
-                    </span>
-                    Explore Now
-                  </button>
+                  <Link to={'/all-tourist-spot'}>
+                    {' '}
+                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -172,9 +177,12 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <button className="bg-[#FF497C] py-2 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                    Explore Now
-                  </button>
+                  <Link to={'/all-tourist-spot'}>
+                    {' '}
+                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

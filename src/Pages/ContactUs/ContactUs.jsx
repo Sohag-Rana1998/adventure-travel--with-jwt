@@ -6,12 +6,35 @@ import { Helmet } from 'react-helmet';
 import { ScrollRestoration } from 'react-router-dom';
 import { Fade, Zoom } from 'react-awesome-reveal';
 import { useEffect, useState } from 'react';
+import { MapContainer, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import { Icon } from 'leaflet';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(setLoading, 500, false);
   }, []);
+
+  const markerIcon = new Icon({
+    iconUrl: '/location-2955 (1).png',
+    iconSize: [45, 45],
+  });
+
+  const handleSent = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setTimeout(setLoading, 500, false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Message Sent Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }, 500);
+  };
+
   return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
@@ -80,11 +103,39 @@ const ContactUs = () => {
               cols="20"
               rows="5"
             ></textarea>
-            <button className="btn rounded-3xl border-2 border-purple-400 bg-white bg-opacity-20">
+            <button
+              onClick={handleSent}
+              className="btn rounded-3xl border-2 border-purple-400 bg-white bg-opacity-20"
+            >
               Send Message
             </button>
           </div>
         </Zoom>
+      </div>
+
+      <div className="my-20">
+        <div>
+          <h1 className="text-5xl font-bold font-play text-center my-5">
+            Connect with one of our global offices
+          </h1>
+        </div>
+        <div className="w-full h-[500px]">
+          <MapContainer
+            className="h-full w-full"
+            center={[25.0318, 55.19]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[25.0318, 55.19]} icon={markerIcon}>
+              <Popup>Dubai Production City,United Arab Emirates</Popup>
+              <Tooltip>Dubai Production City,United Arab Emirates</Tooltip>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
       <ScrollRestoration />
     </div>

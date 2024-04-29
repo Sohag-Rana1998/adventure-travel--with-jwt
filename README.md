@@ -4,7 +4,7 @@
 
 ### My selected Category Name is: Southeast Asia.
 
-##### Packages i have used in my website:
+#### Packages i have used in my website for challenge requirement:
 
 1. React-simple-typewriter,
 2. React Awesome reveal,
