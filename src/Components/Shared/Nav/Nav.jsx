@@ -153,8 +153,13 @@ const NavBar = () => {
       </li>
     </div>
   );
-
-  return (
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 500, false);
+  }, []);
+  return loading ? (
+    <div className="w-full"></div>
+  ) : (
     <div className="navbar max-w-7xl fixed z-30 container pt-2 mx-auto  bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
