@@ -111,7 +111,7 @@ const Login = () => {
   ) : (
     <div className="flex flex-col  justify-between items-center ">
       <Helmet>
-        <title>RESIDENCE HUB || Login</title>
+        <title>Adventure Travel || Login</title>
       </Helmet>
       <div className="flex flex-col max-w-lg container p-5 md:p-20 rounded-md   bg-slate-100 border-2 mb-5 shadow-xl border-purple-200 text-gray-800">
         <div className="mb-4 text-center">

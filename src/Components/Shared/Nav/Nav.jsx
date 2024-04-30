@@ -8,7 +8,10 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(localTheme);
   const [type, setType] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 500, false);
+  }, []);
   useEffect(() => {
     localStorage.setItem('theme', theme);
     const localTheme = localStorage.getItem('theme');
@@ -153,10 +156,7 @@ const NavBar = () => {
       </li>
     </div>
   );
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(setLoading, 500, false);
-  }, []);
+
   return loading ? (
     <div className="w-full"></div>
   ) : (

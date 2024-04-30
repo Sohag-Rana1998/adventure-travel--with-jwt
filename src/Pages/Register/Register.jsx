@@ -126,7 +126,7 @@ const Register = () => {
   ) : (
     <div className="flex flex-col justify-between items-center mb-10">
       <Helmet>
-        <title>RESIDENCE HUB | Register</title>
+        <title>Adventure Travel | Register</title>
       </Helmet>
       <div className="flex flex-col  max-w-lg w-full p-5 md:p-16 rounded-md   border-2  shadow-xl border-purple-200 ">
         <div className="mb-4 text-center">

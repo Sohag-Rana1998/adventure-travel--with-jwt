@@ -1,6 +1,7 @@
 import { Rating } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 
 const FullReview = () => {
@@ -23,6 +24,9 @@ const FullReview = () => {
     </div>
   ) : (
     <div className="px-0 md:px-32">
+      <Helmet>
+        <title>Adventure Travel | Details Review</title>
+      </Helmet>
       <div className="container  mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
         <div className="rounded-t-lg bg-blue-300 h-24 overflow-hidden">
           {/* <img
