@@ -34,7 +34,6 @@ const ViewSpotDetails = () => {
       toast.warn('Already Saved On Your Saved Cart.');
     }
   };
-  console.log(places);
 
   useEffect(() => {
     localStorage.setItem('spots', JSON.stringify(places));
@@ -69,9 +68,9 @@ const ViewSpotDetails = () => {
         <title>Adventure Travel | Details </title>
       </Helmet>
 
-      <div className="h-32 mb-10 md:h-52 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
-        <h1 className="text-4xl font-bold text-white  text-center">
-          Know Details Information Here
+      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/Y08m64hN/be.jpg)] bg-opacity-20">
+        <h1 className="text-2xl md:text-4xl font-bold text-white  text-center">
+          Know The Details Information Here
         </h1>
       </div>
 
@@ -94,7 +93,7 @@ const ViewSpotDetails = () => {
                   <Typography className="text-2xl font-bold">
                     Spot Name: {spotName}
                   </Typography>
-                  <Typography color="gray" className=" font-bold text-xl">
+                  <Typography className=" font-bold text-xl">
                     Country: {CountryName}
                   </Typography>
                   <Typography
@@ -120,11 +119,7 @@ const ViewSpotDetails = () => {
                   </div>
                 </div>
 
-                <Typography
-                  variant="lead"
-                  color="gray"
-                  className="text-lg mt-2"
-                >
+                <Typography variant="lead" className="text-lg mt-2">
                   <span className="font-bold">Details About The Spot: </span>
                   {description}
                 </Typography>
@@ -133,7 +128,6 @@ const ViewSpotDetails = () => {
             <div>
               <Typography
                 variant="lead"
-                color="black"
                 className="font-normal md:font-semibold flex  gap-2 "
               >
                 <span className="font-bold">
@@ -142,7 +136,6 @@ const ViewSpotDetails = () => {
               </Typography>
               <Typography
                 variant="lead"
-                color="black"
                 className="font-normal md:font-semibold flex  gap-2 "
               >
                 <span className="font-bold">Best Season: {season} </span>

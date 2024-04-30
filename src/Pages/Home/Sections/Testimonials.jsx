@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import UseTestimonials from '../../../Components/useHooks/useTestimonials/UseTestimonials';
 import { Button, Rating } from '@material-tailwind/react';
 import { Slide } from 'react-awesome-reveal';
+import { IoMdArrowRoundForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
   const { data } = UseTestimonials();
   const [reviews, setReviews] = useState([]);
   const [hide, setHide] = useState(false);
   useEffect(() => {
-    const testimonials = data?.slice(0, 3);
+    const testimonials = data?.slice(0, 4);
+
     setReviews(testimonials);
   }, [data]);
 
@@ -29,18 +32,18 @@ const Testimonials = () => {
         </Slide>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {reviews?.map(testimonial => (
           <div
             key={testimonial._id}
             className="container  mx-auto  bg-white shadow-xl rounded-lg text-gray-900"
           >
-            <div className="rounded-t-lg h-32 overflow-hidden">
-              <img
+            <div className="rounded-t-lg bg-blue-300 h-24 overflow-hidden">
+              {/* <img
                 className="object-cover object-top w-full"
                 src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
                 alt="Mountain"
-              />
+              /> */}
             </div>
             <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
               <img
@@ -52,28 +55,35 @@ const Testimonials = () => {
               <h2 className="font-semibold">{testimonial.user}</h2>
               <h2 className="font-semibold">From:{testimonial.location}</h2>
               <p className=" font-semibold">
-                <Rating value={testimonial.rating} className="" />
+                <Rating value={parseInt(testimonial?.rating)} className="" />
               </p>
               <p className=" font-semibold">
-                {testimonial?.comment?.slice(0, 250)}
+                {testimonial?.comment?.slice(0, 150)}.....
               </p>
-              <button className="btn">Continue Reading</button>
+              <Link to={`/full-review/${testimonial._id}`}>
+                <span className="underline cursor-pointer font-bold flex items-center">
+                  Continue Reading <IoMdArrowRoundForward />
+                </span>
+              </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="w-full flex justify-center">
+      <div className="w-full my-5 gap-3 flex items-center justify-end">
         {hide ? (
           ''
         ) : (
-          <Button
-            onClick={handleShowMore}
-            size="lg"
-            className="bg-orange-500 my-5"
-          >
+          <Button onClick={handleShowMore} size="lg" className="bg-orange-500 ">
             Show More Reviews
           </Button>
         )}
+
+        <Link to={'/add-review'}>
+          {' '}
+          <Button size="lg" className="bg-orange-500">
+            Add a review
+          </Button>
+        </Link>
       </div>
     </div>
   );

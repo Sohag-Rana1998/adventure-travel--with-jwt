@@ -124,21 +124,19 @@ const Register = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="flex flex-col justify-between items-center">
+    <div className="flex flex-col justify-between items-center mb-10">
       <Helmet>
         <title>RESIDENCE HUB | Register</title>
       </Helmet>
-      <div className="flex flex-col  max-w-lg w-full p-5 md:p-16 rounded-md  bg-green-100 border-2 my-5 shadow-xl border-purple-200 text-gray-800">
+      <div className="flex flex-col  max-w-lg w-full p-5 md:p-16 rounded-md   border-2  shadow-xl border-purple-200 ">
         <div className="mb-4 text-center">
           <h1 className="my-3 text-4xl font-bold">Register Now</h1>
-          <p className="text-sm text-gray-600">
-            Register to access all of our features...
-          </p>
+          <p className="text-sm ">Register to access all of our features...</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block mb-2 text-sm">
+              <label htmlFor="name" className="block mb-2 font-bold text-sm">
                 Your Name
               </label>
               <input
@@ -147,11 +145,11 @@ const Register = () => {
                 id="name"
                 required
                 placeholder="Your Name"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 "
               />
             </div>
             <div>
-              <label htmlFor="name" className="block mb-2 text-sm">
+              <label htmlFor="name" className="block mb-2 font-bold text-sm">
                 Your Photo URL
               </label>
               <input
@@ -159,11 +157,11 @@ const Register = () => {
                 name="photo"
                 id="photo"
                 placeholder="Your Photo URL"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 "
               />
             </div>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block mb-2 font-bold text-sm">
                 Email address
               </label>
               <input
@@ -177,7 +175,7 @@ const Register = () => {
             </div>
             <div>
               <div className="flex  justify-between mb-2">
-                <label htmlFor="password" className="text-sm">
+                <label htmlFor="password" className="text-sm font-bold">
                   Password
                 </label>
                 <a
@@ -215,14 +213,14 @@ const Register = () => {
               <input
                 type="submit"
                 value="Register"
-                className="w-full px-8 py-3 font-semibold rounded-md bg-blue-600 text-gray-50"
+                className="w-full px-8 py-3 font-semibold cursor-pointer rounded-md bg-blue-600 text-gray-50"
               />
             </div>
-            <p className="px-6 text-sm text-center text-gray-600">
+            <p className="px-6 text-sm text-center ">
               Already have an account yet?
               <Link to={'/login'}>
                 {' '}
-                <button className="hover:underline font-bold text-xl text-blue-600">
+                <button className="hover:underline cursor-pointer font-bold text-xl text-blue-600">
                   Log In
                 </button>
               </Link>
@@ -239,7 +237,7 @@ const Register = () => {
             onClick={handleGoogleLogin}
             size="lg"
             variant="outlined"
-            color="blue-gray"
+            color="light-blue"
             className="flex items-center gap-3 w-full"
           >
             <img

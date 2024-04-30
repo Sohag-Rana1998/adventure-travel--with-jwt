@@ -4,15 +4,19 @@ import { ScrollRestoration } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import useUserData from '../../Components/useHooks/useUsersData/useUserData';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const MyListOfSpot = () => {
   const { data, refetch, isLoading } = useUserData();
-
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const userName = user?.displayName;
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoading, 500, false);
+  }, []);
 
   const handleDelete = id => {
     Swal.fire({
@@ -104,7 +108,7 @@ const MyListOfSpot = () => {
       });
   };
 
-  return isLoading ? (
+  return isLoading || loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
     </div>
@@ -137,60 +141,97 @@ const MyListOfSpot = () => {
               </div>
             </div>
           </div>
-          <div className="divider w-full px-0 md:px-32 "></div>
-          <div className="px-0 md:px-32 ">
-            <div className="overflow-x-auto">
-              <table className="table ">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>No:</th>
-                    <th>Image</th>
-                    <th>Name Of Spot</th>
-                    <th>Country</th>
-                    <th>Average Cost</th>
-                    <th>Action1</th>
-                    <th>Action2</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {data?.map((spot, index) => (
-                    <tr key={spot._id} className="bg-base-200">
-                      <th>{index + 1}</th>
-                      <td className="w-32 h-24 ">
-                        <img
-                          src={spot?.photo}
-                          className="w-full h-full rounded-lg"
-                          alt=""
-                        />
-                      </td>
-                      <td>{spot?.spotName}</td>
-                      <td>{spot.CountryName}</td>
-                      <td>${spot.averageCost}</td>
+          <div className="divider w-full mb-10 px-0 md:px-32 "></div>
 
-                      <td>
-                        <label
-                          onClick={() => setModalData(spot)}
-                          htmlFor="my_modal_6"
-                          className="btn bg-blue-gray-200"
-                        >
-                          Update
-                        </label>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(spot._id)}
-                          className="btn bg-blue-gray-200"
-                        >
-                          Delete
-                        </button>
-                      </td>
+          <div className="px-0 md:px-32 ">
+            {data && data?.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="table ">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>No:</th>
+                      <th>Image</th>
+                      <th>Name Of Spot</th>
+                      <th>Country</th>
+                      <th>Average Cost</th>
+                      <th>Action1</th>
+                      <th>Action2</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+                    {data?.map((spot, index) => (
+                      <tr key={spot._id} className="bg-base-200">
+                        <th>{index + 1}</th>
+                        <td className="w-32 h-24 ">
+                          <img
+                            src={spot?.photo}
+                            className="w-full h-full rounded-lg"
+                            alt=""
+                          />
+                        </td>
+                        <td>{spot?.spotName}</td>
+                        <td>{spot.CountryName}</td>
+                        <td>${spot.averageCost}</td>
+
+                        <td>
+                          <label
+                            onClick={() => setModalData(spot)}
+                            htmlFor="my_modal_6"
+                            className="btn bg-blue-gray-200"
+                          >
+                            Update
+                          </label>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(spot._id)}
+                            className="btn bg-blue-gray-200"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="table ">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>No:</th>
+                      <th>Image</th>
+                      <th>Name Of Spot</th>
+                      <th>Country</th>
+                      <th>Average Cost</th>
+                      <th>Action1</th>
+                      <th>Action2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+
+                    <tr className="bg-base-200">
+                      <th></th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="text-center mb-10 md:mb-40 text-3xl font-bold">
+                  No Data Found
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

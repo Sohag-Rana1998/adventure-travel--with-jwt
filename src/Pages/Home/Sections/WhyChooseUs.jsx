@@ -4,7 +4,7 @@ import { Zoom } from 'react-awesome-reveal';
 const WhyChooseUs = () => {
   return (
     <div className="mt-10">
-      <div className="text-center mb-14">
+      <div className="text-center mb-5">
         <Zoom cascade>
           <h3 className="text-xl font-bold">Our Specials</h3>
           <h1 className="text-5xl font-bold">Why Travel with Us?</h1>
@@ -16,7 +16,7 @@ const WhyChooseUs = () => {
             <img
               src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-1.jpg"
               alt=""
-              className="w-full h-52"
+              className="w-full h-52 rounded-t-2xl"
             />
           </div>
           <CardBody className="text-2xl text-center font-bold">
@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
             <img
               src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-2.jpg"
               alt=""
-              className="w-full h-52"
+              className="w-full h-52 rounded-t-2xl"
             />
           </div>
           <CardBody className="text-2xl text-center font-bold">
@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
             <img
               src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-3.jpg"
               alt=""
-              className="w-full h-52"
+              className="w-full h-52 rounded-t-2xl"
             />
           </div>
           <CardBody className="text-2xl text-center font-bold">
@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
             <img
               src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-4.jpg"
               alt=""
-              className="w-full h-52"
+              className="w-full h-52 rounded-t-2xl"
             />
           </div>
           <CardBody className="text-2xl text-center font-bold">

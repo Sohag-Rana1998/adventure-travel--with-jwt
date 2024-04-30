@@ -176,7 +176,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
           >
             {Links}
             <div className="navbar-end mt-2 ">
@@ -189,12 +189,12 @@ const NavBar = () => {
                         (user && user?.photoURL) ||
                         'https://i.ibb.co/zmbRY07/images.png'
                       }
-                      className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
+                      className="mr-4 mb-2 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
                     />
 
                     <button
                       onClick={handleLogout}
-                      className="btn bg-blue-600 hover:bg-blue-gray-900   mr-3 text-white w-full"
+                      className="btn w-32  bg-blue-600 hover:bg-blue-gray-900   text-white"
                     >
                       Log Out
                     </button>
@@ -202,12 +202,12 @@ const NavBar = () => {
                 ) : (
                   <div>
                     <Link to={'/login'}>
-                      <button className="btn w-40 btn-bg mr-3 text-white">
+                      <button className="btn w-32 btn-bg mr-3 text-white">
                         Log In
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className="btn w-40 btn-bg mr-3 text-white">
+                      <button className="btn w-32 btn-bg mr-3 text-white">
                         Register
                       </button>
                     </Link>
@@ -217,15 +217,18 @@ const NavBar = () => {
             </div>
           </ul>
         </div>
-        <div className="flex justify-between items-center ">
+        <div className="flex w-full justify-between items-center ">
           <Link to={'/'}>
-            <button className=" py-2 rounded-xl w-44 text-xl font-bold text-blue-600">
+            <button className=" py-2 rounded-xl w-auto text-xl font-bold text-blue-600">
               Adventure Travel
             </button>
           </Link>
-          <div className="block md:hidden">{themeButton}</div>
         </div>
       </div>
+      <div className="flex md:hidden justify-end items-center w-full mx-5">
+        <div className="block md:hidden ">{themeButton}</div>
+      </div>
+
       <div className="navbar-center hidden  lg:flex">
         <ul className="menu menu-horizontal px-1"> {Links}</ul>
       </div>
@@ -251,16 +254,16 @@ const NavBar = () => {
                           <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold text-xl p-2 rounded-md mb-2">
                             {user?.displayName || ''}
                           </h2>
+                          <button
+                            onClick={handleLogout}
+                            className="btn hover:bg-blue-500 bg-gray-500   mr-3 text-white"
+                          >
+                            Log Out
+                          </button>
                         </div>
                       </div>
                     </ul>
                   </li>
-                  <button
-                    onClick={handleLogout}
-                    className="btn btn-bg hover:bg-gray-500   mr-3 text-white"
-                  >
-                    Log Out
-                  </button>
                 </ul>
               </nav>
             </div>

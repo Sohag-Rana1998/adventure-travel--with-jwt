@@ -113,7 +113,7 @@ const Login = () => {
       <Helmet>
         <title>RESIDENCE HUB || Login</title>
       </Helmet>
-      <div className="flex flex-col max-w-lg container p-5 md:p-20 rounded-md   bg-slate-100 border-2 my-5 shadow-xl border-purple-200 text-gray-800">
+      <div className="flex flex-col max-w-lg container p-5 md:p-20 rounded-md   bg-slate-100 border-2 mb-5 shadow-xl border-purple-200 text-gray-800">
         <div className="mb-4 text-center">
           <h1 className="my-3 text-4xl font-bold">Log in</h1>
           <p className="text-sm dark:text-gray-600">
@@ -128,7 +128,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block font-bold mb-2 text-sm">
                 Email address
               </label>
               <input
@@ -142,7 +142,7 @@ const Login = () => {
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="password" className="text-sm">
+                <label htmlFor="password" className="text-sm font-bold">
                   Password
                 </label>
                 <a
@@ -180,7 +180,7 @@ const Login = () => {
               <input
                 type="submit"
                 value="Log In"
-                className="w-full px-8 py-3 font-semibold rounded-md bg-blue-600 text-gray-50"
+                className="w-full px-8 py-3 cursor-pointer font-semibold rounded-md bg-blue-600 text-gray-50"
               />
             </div>
             <p className="px-6 text-sm text-center text-gray-600">
@@ -189,7 +189,7 @@ const Login = () => {
                 <button
                   rel="noopener noreferrer"
                   href="#"
-                  className="hover:underline font-bold text-xl text-violet-600"
+                  className="hover:underline cursor-pointer font-bold text-xl text-violet-600"
                 >
                   Sign up
                 </button>

@@ -12,6 +12,8 @@ import ViewSpotDetails from '../../Pages/ViewSpotDetails/ViewSpotDetails';
 import UpdateTouristData from '../../Pages/UpdateTouristData/UpdateTouristData';
 import MyListOfSpot from '../../Pages/MyListOfSpot/MyListOfSpot';
 import CountriesSpots from '../../Pages/CoutriesSpots/CountriesSpots';
+import FullReview from '../../Pages/Home/Sections/FullReview';
+import AddReview from '../../Pages/Home/Sections/AddReview';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: '/full-review/:id',
+        element: <FullReview></FullReview>,
+      },
+      {
         path: '/update-tourist-data/:id',
         element: (
           <PrivateRoute>
@@ -74,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: '/countries-spots/:CountryName',
         element: <CountriesSpots></CountriesSpots>,
+      },
+      {
+        path: '/add-review',
+        element: <AddReview></AddReview>,
       },
     ],
   },

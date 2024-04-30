@@ -44,8 +44,8 @@ const ContactUs = () => {
       <Helmet>
         <title>Adventure Travel | Contact Us</title>
       </Helmet>
-      <div className="flex flex-col md:flex-row justify-between gap-5">
-        <div className="w-full space-y-4">
+      <div className="flex flex-col text-center md:text-left md:flex-row justify-between gap-5">
+        <div className="w-full space-y-4  text-center md:text-left">
           <Fade cascade>
             <h2 className="text-3xl font-bold">Adventure Travel</h2>
             <p>
@@ -53,7 +53,7 @@ const ContactUs = () => {
               your <br />
               memorable moments, to share with your best companion.
             </p>
-            <div className=" text-3xl flex items-center gap-6">
+            <div className=" text-3xl w-full justify-center md:justify-start  text-center md:text-left flex items-center gap-6">
               <FaFacebook></FaFacebook>
               <FaTwitter></FaTwitter>
               <FaInstagram></FaInstagram>
@@ -115,7 +115,7 @@ const ContactUs = () => {
 
       <div className="my-20">
         <div>
-          <h1 className="text-5xl font-bold font-play text-center my-5">
+          <h1 className="text-2xl md:text-5xl font-bold font-play text-center my-5">
             Connect with one of our global offices
           </h1>
         </div>
