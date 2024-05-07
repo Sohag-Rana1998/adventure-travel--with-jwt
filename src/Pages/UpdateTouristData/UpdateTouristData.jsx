@@ -1,29 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ScrollRestoration, useParams } from 'react-router-dom';
-import axios from 'axios';
+
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+
+import useAuth from '../../Components/useHooks/useAuth/useAuth';
+import useAxiosSecure from '../../Components/useHooks/useAxiosSecure/useAxiosSecure';
 
 const UpdateTouristData = () => {
-  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth;
   const email = user?.email;
   const userName = user?.displayName;
-  console.log(email, userName);
+  // console.log(email, userName);
   const { id } = useParams();
   const [spot, setSpot] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`)
-      .then(data => {
-        setSpot(data.data);
-      });
+    axiosSecure.get(`/tourist-spot/${id}`).then(data => {
+      setSpot(data.data);
+    });
     setTimeout(setLoading, 500, false);
-  }, [id]);
+  }, [id, axiosSecure]);
 
   const {
     photo,
@@ -65,9 +66,9 @@ const UpdateTouristData = () => {
       userName,
       email,
     };
-    console.log(UpdateTouristSpot);
+    // console.log(UpdateTouristSpot);
 
-    fetch(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`, {
+    fetch(`https://adventure-travel-server.vercel.app/tourist-spot/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -76,7 +77,7 @@ const UpdateTouristData = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
 
         if (data.modifiedCount > 0) {
           Swal.fire({

@@ -2,20 +2,29 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { ScrollRestoration } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import useUserData from '../../Components/useHooks/useUsersData/useUserData';
 
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { useEffect, useState } from 'react';
+import useAuth from '../../Components/useHooks/useAuth/useAuth';
+import useAxiosSecure from '../../Components/useHooks/useAxiosSecure/useAxiosSecure';
 
 const MyListOfSpot = () => {
-  const { data, refetch, isLoading } = useUserData();
-  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const email = user?.email;
   const userName = user?.displayName;
-
+  const [mylist, setMylist] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const myTouristData = () => {
+    axiosSecure.get(`/mylist?email=${email}`).then(res => {
+      // console.log(res.data);
+      setMylist(res.data);
+    });
+  };
+
   useEffect(() => {
-    setTimeout(setLoading, 500, false);
+    setTimeout(setLoading, 1000, false);
+    myTouristData();
   }, []);
 
   const handleDelete = id => {
@@ -31,16 +40,16 @@ const MyListOfSpot = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            `https://travel-zone-server-side.vercel.app/tourist-spot/${id}`
+            `https://adventure-travel-server.vercel.app/tourist-spot/${id}`
           )
-          .then(data => {
-            console.log(data);
+          .then(() => {
+            // console.log(data);
             Swal.fire({
               title: 'Deleted!',
               text: 'User data has been deleted.',
               icon: 'success',
             });
-            refetch();
+            myTouristData();
           });
       }
     });
@@ -75,9 +84,9 @@ const MyListOfSpot = () => {
       userName,
       email,
     };
-    console.log(UpdateTouristSpot);
+    // console.log(UpdateTouristSpot);
 
-    fetch(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`, {
+    fetch(`https://adventure-travel-server.vercel.app/tourist-spot/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -86,7 +95,7 @@ const MyListOfSpot = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
 
         if (data.modifiedCount > 0) {
           Swal.fire({
@@ -95,7 +104,7 @@ const MyListOfSpot = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          refetch();
+          myTouristData();
 
           form.reset();
         } else {
@@ -108,7 +117,7 @@ const MyListOfSpot = () => {
       });
   };
 
-  return isLoading || loading ? (
+  return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>
     </div>
@@ -136,7 +145,7 @@ const MyListOfSpot = () => {
                 <h4 className="text xl font-bold"> User Name: {userName}</h4>
                 <h4 className="text xl font-bold"> User Email: {email}</h4>
                 <h4 className="text xl font-bold">
-                  Total Tourists Spot : {data?.length}
+                  Total Tourists Spot : {mylist?.length}
                 </h4>
               </div>
             </div>
@@ -144,7 +153,7 @@ const MyListOfSpot = () => {
           <div className="divider w-full mb-10 px-0 md:px-32 "></div>
 
           <div className="px-0 md:px-32 ">
-            {data && data?.length > 0 ? (
+            {mylist && mylist?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
                   {/* head */}
@@ -161,39 +170,40 @@ const MyListOfSpot = () => {
                   </thead>
                   <tbody>
                     {/* row 1 */}
-                    {data?.map((spot, index) => (
-                      <tr key={spot._id} className="bg-base-200">
-                        <th>{index + 1}</th>
-                        <td className="w-32 h-24 ">
-                          <img
-                            src={spot?.photo}
-                            className="w-full h-full rounded-lg"
-                            alt=""
-                          />
-                        </td>
-                        <td>{spot?.spotName}</td>
-                        <td>{spot.CountryName}</td>
-                        <td>${spot.averageCost}</td>
+                    {mylist &&
+                      mylist?.map((spot, index) => (
+                        <tr key={spot._id} className="bg-base-200">
+                          <th>{index + 1}</th>
+                          <td className="w-32 h-24 ">
+                            <img
+                              src={spot?.photo}
+                              className="w-full h-full rounded-lg"
+                              alt=""
+                            />
+                          </td>
+                          <td>{spot?.spotName}</td>
+                          <td>{spot.CountryName}</td>
+                          <td>${spot.averageCost}</td>
 
-                        <td>
-                          <label
-                            onClick={() => setModalData(spot)}
-                            htmlFor="my_modal_6"
-                            className="btn bg-blue-gray-200"
-                          >
-                            Update
-                          </label>
-                        </td>
-                        <td>
-                          <button
-                            onClick={() => handleDelete(spot._id)}
-                            className="btn bg-blue-gray-200"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                          <td>
+                            <label
+                              onClick={() => setModalData(spot)}
+                              htmlFor="my_modal_6"
+                              className="btn bg-blue-gray-200"
+                            >
+                              Update
+                            </label>
+                          </td>
+                          <td>
+                            <button
+                              onClick={() => handleDelete(spot._id)}
+                              className="btn bg-blue-gray-200"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

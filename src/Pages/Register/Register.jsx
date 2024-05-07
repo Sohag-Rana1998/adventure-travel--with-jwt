@@ -3,20 +3,24 @@ import { Link, ScrollRestoration, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@material-tailwind/react';
 import { Helmet } from 'react-helmet-async';
-import { useContext, useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGithub } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import { getAuth, updateProfile } from 'firebase/auth';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 import app from '../../../Firebase/firebase.config';
+import useAuth from '../../Components/useHooks/useAuth/useAuth';
 
 const Register = () => {
   const [type, setType] = useState(false);
-  const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =
-    useContext(AuthContext);
+  const {
+    emailVerify,
+    createUserByEmailAndPassword,
+    signInWithGithub,
+    signInWithGoogle,
+  } = useAuth();
   const auth = getAuth(app);
   const handleSubmit = e => {
     e.preventDefault();
@@ -35,17 +39,16 @@ const Register = () => {
       toast.warn('Password Must Be Minimum 06 Character.');
       return;
     }
-    console.log(name, email, photo, password);
+    // console.log(name, email, photo, password);
 
     createUserByEmailAndPassword(email, password)
       .then(() => {
+        emailVerify();
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo,
         })
-          .then(() => {
-            location.reload();
-          })
+          .then(() => {})
           .catch(error => {
             console.error(error);
           });
@@ -70,11 +73,11 @@ const Register = () => {
   };
 
   const navigate = useNavigate();
-  console.log(navigate);
+  // console.log(navigate);
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(result => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         navigate('/');
         Swal.fire({
           icon: 'success',
@@ -94,8 +97,8 @@ const Register = () => {
   };
   const handleGithubLogin = () => {
     signInWithGithub()
-      .then(result => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         navigate('/');
 
         Swal.fire({

@@ -5,7 +5,7 @@ const UseCountryData = () => {
     queryKey: ['country'],
     queryFn: async () => {
       const res = await fetch(
-        'https://travel-zone-server-side.vercel.app/countries'
+        'https://adventure-travel-server.vercel.app/countries'
       );
       const data = await res.json();
       return data;

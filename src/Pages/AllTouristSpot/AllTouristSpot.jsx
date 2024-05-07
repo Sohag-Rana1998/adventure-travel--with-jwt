@@ -25,7 +25,7 @@ const AllTouristSpot = () => {
     setTimeout(setLoading, 500, false);
     setDisplayData(shortData);
 
-    console.log(shortData);
+    // console.log(shortData);
   };
   const handleShort2 = () => {
     setLoading(true);
@@ -34,21 +34,18 @@ const AllTouristSpot = () => {
     );
     setTimeout(setLoading, 500, false);
     setDisplayData(shortData2);
-    console.log(shortData2);
+    // console.log(shortData2);
   };
 
   const [text] = useTypewriter({
     words: ['MODERN & BEAUTIFUL'],
     loop: 1,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
   const [text2] = useTypewriter({
     words: ['Our Most Popular Adventures Here'],
     loop: 1,
     typeSpeed: 50,
     deleteSpeed: 50,
-
-    onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
 
   return isLoading || loading ? (

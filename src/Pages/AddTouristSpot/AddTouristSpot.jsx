@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 import { Helmet } from 'react-helmet';
 import { ScrollRestoration } from 'react-router-dom';
+import useAuth from '../../Components/useHooks/useAuth/useAuth';
 
 const AddTouristSpot = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const userEmail = user?.email || 'Not Found';
   const userName = user?.displayName;
-  console.log(userEmail, userName);
+  // console.log(userEmail, userName);
 
   const handleAddSpot = e => {
     e.preventDefault();
@@ -46,8 +47,8 @@ const AddTouristSpot = () => {
         userName,
         email,
       };
-      console.log(addTouristSpot);
-      fetch('https://travel-zone-server-side.vercel.app/add-tourist-spot', {
+      // console.log(addTouristSpot);
+      fetch('https://adventure-travel-server.vercel.app/add-tourist-spot', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -55,8 +56,8 @@ const AddTouristSpot = () => {
         body: JSON.stringify(addTouristSpot),
       })
         .then(res => res.json())
-        .then(data => {
-          console.log(data);
+        .then(() => {
+          // console.log(data);
           Swal.fire({
             icon: 'success',
             title: 'Tourist spot Added Successfully',

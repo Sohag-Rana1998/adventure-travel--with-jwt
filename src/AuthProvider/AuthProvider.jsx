@@ -6,16 +6,17 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
 } from 'firebase/auth';
 
-import Swal from 'sweetalert2';
 import app from '../../Firebase/firebase.config';
 
-// import app from '../../firebase/firebase.config';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
@@ -26,16 +27,34 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
-      console.log(currentUser);
+      // console.log(currentUser);
       setLoading(true);
+      const userEmail = { email: currentUser?.email } || user?.email;
       setUser(currentUser);
+      if (currentUser) {
+        axios
+          .post('https://adventure-travel-server.vercel.app/jwt', userEmail, {
+            withCredentials: true,
+          })
+          .then(res => console.log(res.data));
+      } else {
+        axios
+          .post(
+            'https://adventure-travel-server.vercel.app/logout',
+            userEmail,
+            {
+              withCredentials: true,
+            }
+          )
+          .then(res => console.log(res.data));
+      }
       setTimeout(setLoading, 500, false);
     });
 
     return () => {
       unSubscribe();
     };
-  }, [auth]);
+  }, [auth, user]);
 
   const handleUpdateProfile = (name, photo) => {
     updateProfile(auth.currentUser, {
@@ -48,13 +67,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(false);
-    signOut(auth);
-    Swal.fire({
-      icon: 'success',
-      title: 'Log Out successful',
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    return signOut(auth);
   };
 
   const createUserByEmailAndPassword = (email, password) => {
@@ -76,6 +89,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const emailVerify = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      toast('Email verification message sent to your email.');
+    });
+  };
+
   const authInfo = {
     user,
     createUserByEmailAndPassword,
@@ -85,6 +104,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     loading,
     handleUpdateProfile,
+    emailVerify,
   };
 
   return (

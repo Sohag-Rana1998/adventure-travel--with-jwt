@@ -14,7 +14,7 @@ const CountriesSpots = () => {
   useEffect(() => {
     setTimeout(setLoading, 1000, false);
     axios
-      .get(`https://travel-zone-server-side.vercel.app/country/${CountryName}`)
+      .get(`https://adventure-travel-server.vercel.app/country/${CountryName}`)
       .then(data => {
         setSpots(data.data);
       });

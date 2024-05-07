@@ -5,7 +5,7 @@ const UseTestimonials = () => {
     queryKey: ['customers'],
     queryFn: async () => {
       const res = await fetch(
-        'https://travel-zone-server-side.vercel.app/testimonials'
+        'https://adventure-travel-server.vercel.app/testimonials'
       );
       const data = await res.json();
       return data;

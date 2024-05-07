@@ -1,11 +1,13 @@
 import { Avatar } from '@material-tailwind/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
+
+import Swal from 'sweetalert2';
+import useAuth from '../../useHooks/useAuth/useAuth';
 
 const NavBar = () => {
   const localTheme = localStorage.getItem('theme');
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localTheme);
   const [type, setType] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -34,8 +36,20 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    logOut();
-    console.log(user);
+    logOut()
+      .then(result => {
+        console.log(result);
+        Swal.fire({
+          icon: 'success',
+          title: 'Log Out successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch(error => {
+        console.error(error.message);
+      });
+    // console.log(user);
   };
 
   const themeButton = (

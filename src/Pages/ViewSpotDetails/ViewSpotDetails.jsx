@@ -12,7 +12,7 @@ const ViewSpotDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://travel-zone-server-side.vercel.app/tourist-spot/${id}`)
+      .get(`https://adventure-travel-server.vercel.app/tourist-spot/${id}`)
       .then(data => {
         setSpot(data.data);
       });
@@ -24,7 +24,7 @@ const ViewSpotDetails = () => {
   const [places, setPlaces] = useState(savedSpots);
 
   const handleSavedSpot = spot => {
-    console.log(spot);
+    // console.log(spot);
     const isExist = places?.find(place => place._id == spot._id);
     if (!isExist) {
       setPlaces([...places, spot]);

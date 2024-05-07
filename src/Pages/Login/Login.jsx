@@ -7,31 +7,31 @@ import {
 
 import { Button } from '@material-tailwind/react';
 import { Helmet } from 'react-helmet-async';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 import { reload } from 'firebase/auth';
 import Swal from 'sweetalert2';
 import { FaGithub } from 'react-icons/fa6';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useAuth from '../../Components/useHooks/useAuth/useAuth';
 
 const Login = () => {
   const [type, setType] = useState(false);
-  const { signInWithEmail, signInWithGoogle, signInWithGithub } =
-    useContext(AuthContext);
+  const { signInWithEmail, signInWithGoogle, signInWithGithub } = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const handleLogIn = e => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     signInWithEmail(email, password)
-      .then(result => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         reload();
 
         Swal.fire({
@@ -55,8 +55,8 @@ const Login = () => {
   };
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(result => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
 
         navigate(location?.state || '/');
         Swal.fire({
@@ -78,8 +78,8 @@ const Login = () => {
   };
   const handleGithubLogin = () => {
     signInWithGithub()
-      .then(result => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
 
         navigate(location?.state || '/');
         Swal.fire({

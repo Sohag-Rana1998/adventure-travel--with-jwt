@@ -21,8 +21,8 @@ const AddReview = () => {
       rating,
       user,
     };
-    console.log(addReview);
-    fetch('https://travel-zone-server-side.vercel.app/add-testimonials', {
+    // console.log(addReview);
+    fetch('https://adventure-travel-server.vercel.app/add-testimonials', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -30,8 +30,8 @@ const AddReview = () => {
       body: JSON.stringify(addReview),
     })
       .then(res => res.json())
-      .then(data => {
-        console.log(data);
+      .then(() => {
+        // console.log(data);
         Swal.fire({
           icon: 'success',
           title: 'Thank You. Successfully Added Your Review',

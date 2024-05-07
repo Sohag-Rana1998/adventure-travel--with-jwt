@@ -6,7 +6,7 @@ import { Zoom } from 'react-awesome-reveal';
 const CountriesCards = () => {
   const { data } = UseCountryData();
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="w-full mx-auto">
       <div className="text-center mb-5">

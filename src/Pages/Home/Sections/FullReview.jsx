@@ -12,12 +12,12 @@ const FullReview = () => {
   useEffect(() => {
     setTimeout(setLoading, 800, false);
     axios
-      .get(`https://travel-zone-server-side.vercel.app/testimonials/${id}`)
+      .get(`https://adventure-travel-server.vercel.app/testimonials/${id}`)
       .then(data => {
         setReview(data.data);
       });
   }, [id]);
-  console.log(review);
+  // console.log(review);
   return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
       <span className="loading loading-spinner loading-lg"></span>

@@ -14,15 +14,12 @@ const Banner = () => {
   const [text] = useTypewriter({
     words: ['Experience The Unseen!'],
     loop: 3,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
   const [text2] = useTypewriter({
     words: ['Discover The World!'],
     loop: 3,
     typeSpeed: 50,
     deleteSpeed: 50,
-
-    onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
 
   return (
