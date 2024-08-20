@@ -61,7 +61,7 @@
 1. Clone the Repository:
 
 - git clone https://github.com/Sohag-Rana1998/adventure-travel--with-jwt.git
-- cd E-store-client
+- cd adventure-travel--with-jwt
 
 2. Install Dependencies:
 
