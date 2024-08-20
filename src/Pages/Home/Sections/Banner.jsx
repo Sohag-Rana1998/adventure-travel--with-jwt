@@ -1,31 +1,27 @@
-import { EffectFade, Autoplay } from 'swiper/modules';
-
-import { useTypewriter } from 'react-simple-typewriter';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import { Button } from '@material-tailwind/react';
-import { Link } from 'react-router-dom';
-
+import { EffectFade, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import { useTypewriter } from "react-simple-typewriter";
+import { GrLinkNext } from "react-icons/gr";
 const Banner = () => {
   const [text] = useTypewriter({
-    words: ['Experience The Unseen!'],
+    words: ["Experience The Unseen!"],
     loop: 3,
   });
   const [text2] = useTypewriter({
-    words: ['Discover The World!'],
+    words: ["Discover The World!"],
     loop: 3,
     typeSpeed: 50,
     deleteSpeed: 50,
   });
 
   return (
-    <div className="max-w-7xl w-full container mx-auto  lg:h-[500px]  bg-gradient-to-r from-[#F9F3F0] from-10% via-[#FCE7DC] via-30% to-[#F9F3F0] to-90% dark:bg-gradient-to-r dark:from-[#f2f2d8] dark:from-10% dark:via-[#FCE7DC] dark:via-30% dark:to-[#fae1d4]">
+    <div className=" w-full  mx-auto  ">
       <Swiper
-        effect={'fade'}
+        effect={"fade"}
         fadeEffect={{ crossFade: true }}
         slidesPerView={1}
         spaceBetween={30}
@@ -34,19 +30,27 @@ const Banner = () => {
           delay: 4000,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay, EffectFade]}
-        className="mySwiper h-[500px] rounded-xl"
+        modules={[EffectFade, Autoplay]}
+        className="w-full mySwiper h-[650px] overflow-hidden"
       >
         {/* slide 1 */}
         <SwiperSlide>
-          <div className=" w-full bg-[url(https://i.postimg.cc/zvfKDjcT/longest-sea-beach-in.jpg)] bg-no-repeat bg-center bg-cover h-full">
-            <div className="h-full w-full flex justify-center items-center">
+          <div className=" w-full relative  h-full">
+            <div className="inset-0 absolute z-10">
+              <img
+                src="https://i.postimg.cc/wx1Q3khc/banner-4.jpg"
+                alt=""
+                className="h-full w-full zoom-infinite"
+              />
+              <div className="inset-0 absolute bg-black bg-opacity-40"></div>
+            </div>
+            <div className="h-full relative z-20 w-full flex justify-center items-center">
               <div className="flex flex-col text-white justify-center items-center ">
-                <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
+                <p className="font-semibold   text-center md:text-left text-white border-b-4  ">
                   <span>{text}</span>
                 </p>
 
-                <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
+                <p className="xl:text-[70px] leading-none lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
                   {text2}
                 </p>
                 <p className="font-medium  md:text-lg text-center text-white">
@@ -54,29 +58,34 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <Link to={'/all-tourist-spot'}>
-                    {' '}
-                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                      Explore Now
-                    </Button>
+                  <Link to={"/all-tourist-spot"}>
+                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                      Explore Now <GrLinkNext />
+                    </btn>
                   </Link>
                 </div>
               </div>
-
-              {/* left */}
             </div>
           </div>
         </SwiperSlide>
-        {/* slide 2 */}
+        {/* slide 02 */}
         <SwiperSlide>
-          <div className=" w-full bg-[url(https://i.postimg.cc/Y08m64hN/be.jpg)] bg-no-repeat bg-center bg-cover h-full">
-            <div className="h-full w-full flex justify-center items-center">
+          <div className=" w-full relative  h-full">
+            <div className="inset-0 absolute z-10">
+              <img
+                src="https://i.postimg.cc/NMgCW2VC/banner-3.jpg"
+                alt=""
+                className="h-full w-full zoom-infinite"
+              />
+              <div className="inset-0 absolute bg-black bg-opacity-40"></div>
+            </div>
+            <div className="h-full relative z-20 w-full flex justify-center items-center">
               <div className="flex flex-col text-white justify-center items-center ">
-                <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
+                <p className="font-semibold   text-center md:text-left text-white border-b-4  ">
                   EXPLORE WONDERFUL EXPERIENCE
                 </p>
 
-                <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
+                <p className="xl:text-[70px] leading-none lg:text-[60px] md:text-[40px]  text-white text-[30px] font-bold text-center">
                   Your One Stop Gateway <br /> to Southeast Asia
                 </p>
                 <p className="font-medium  md:text-lg text-center text-white">
@@ -84,11 +93,11 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <Link to={'/all-tourist-spot'}>
-                    {' '}
-                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                      Explore Now
-                    </Button>
+                  <Link to={"/all-tourist-spot"}>
+                    {" "}
+                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                      Explore Now <GrLinkNext />
+                    </btn>
                   </Link>
                 </div>
               </div>
@@ -97,46 +106,24 @@ const Banner = () => {
             </div>
           </div>
         </SwiperSlide>
-        {/* slide 3 */}
+        {/* slide 03 */}
         <SwiperSlide>
-          <div className=" w-full bg-[url(https://i.postimg.cc/QCr5qk6T/cameron-highlands-trail.jpg)] bg-no-repeat bg-center bg-cover h-full">
-            <div className="h-full w-full flex justify-center items-center">
+          <div className=" w-full relative  h-full">
+            <div className="inset-0 absolute z-10">
+              <img
+                src="https://i.postimg.cc/15kQbMKW/banner-5.jpg"
+                alt=""
+                className="h-full w-full zoom-infinite"
+              />
+              <div className="inset-0 absolute bg-black bg-opacity-40"></div>
+            </div>
+            <div className="h-full relative z-20 w-full flex justify-center items-center">
               <div className="flex flex-col justify-center items-center ">
-                <p className="font-semibold uppercase  mb-3 text-center md:text-left text-white border-b-4  ">
+                <p className="font-semibold  uppercase  mb-3 text-center md:text-left text-white border-b-4  ">
                   Experience The New
                 </p>
 
-                <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
-                  Explore Your Travel Discover
-                </p>
-                <p className="font-medium text-white text-black/60 md:text-lg text-center">
-                  your next great adventure, become an explorer to get started!
-                </p>
-
-                <div className="flex justify-center md:justify-start">
-                  <Link to={'/all-tourist-spot'}>
-                    {' '}
-                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                      Explore Now
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              {/* left */}
-            </div>
-          </div>
-        </SwiperSlide>
-        {/* slide 4 */}
-        <SwiperSlide>
-          <div className=" w-full bg-[url(https://i.postimg.cc/xTVtMSDp/83.jpg)] bg-no-repeat bg-center bg-cover h-full">
-            <div className="h-full w-full flex justify-center items-center">
-              <div className="flex flex-col justify-center items-center ">
-                <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
-                  Your Trusted Holiday Partner
-                </p>
-
-                <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
+                <p className="xl:text-[70px] leading-none lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
                   Lets Make Your Best Trip Ever!
                 </p>
                 <p className="font-medium text-white text-black/60 md:text-lg text-center">
@@ -144,41 +131,11 @@ const Banner = () => {
                 </p>
 
                 <div className="flex justify-center md:justify-start">
-                  <Link to={'/all-tourist-spot'}>
-                    {' '}
-                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                      Explore Now
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              {/* left */}
-            </div>
-          </div>
-        </SwiperSlide>
-        {/* slide 5 */}
-        <SwiperSlide>
-          <div className=" w-full bg-[url(https://i.postimg.cc/MH9pKHZv/a3.jpg)] bg-no-repeat bg-center bg-cover h-full">
-            <div className="h-full w-full flex justify-center items-center">
-              <div className="flex flex-col text-white justify-center items-center ">
-                <p className="font-semibold  mb-3 text-center md:text-left text-white border-b-4  ">
-                  Discover The New Horizons!
-                </p>
-
-                <p className="xl:text-[70px] lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
-                  Embark On A Epic Journey With Us!
-                </p>
-                <p className="font-medium text-white text-black/60 md:text-lg text-center">
-                  your next great adventure, become an explorer to get started!
-                </p>
-
-                <div className="flex justify-center md:justify-start">
-                  <Link to={'/all-tourist-spot'}>
-                    {' '}
-                    <Button className="bg-orange-500 py-3 mt-5 px-3 rounded text-white font-semibold hover:bg-[#ab3154]">
-                      Explore Now
-                    </Button>
+                  <Link to={"/all-tourist-spot"}>
+                    {" "}
+                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                      Explore Now <GrLinkNext />
+                    </btn>
                   </Link>
                 </div>
               </div>

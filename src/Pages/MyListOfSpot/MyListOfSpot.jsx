@@ -1,11 +1,11 @@
-import Swal from 'sweetalert2';
-import axios from 'axios';
-import { ScrollRestoration } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import Swal from "sweetalert2";
+import axios from "axios";
+import { ScrollRestoration } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
-import { useEffect, useState } from 'react';
-import useAuth from '../../Components/useHooks/useAuth/useAuth';
-import useAxiosSecure from '../../Components/useHooks/useAxiosSecure/useAxiosSecure';
+import { useEffect, useState } from "react";
+import useAuth from "../../Components/useHooks/useAuth/useAuth";
+import useAxiosSecure from "../../Components/useHooks/useAxiosSecure/useAxiosSecure";
 
 const MyListOfSpot = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +16,7 @@ const MyListOfSpot = () => {
   const [loading, setLoading] = useState(true);
 
   const myTouristData = () => {
-    axiosSecure.get(`/mylist?email=${email}`).then(res => {
+    axiosSecure.get(`/mylist?email=${email}`).then((res) => {
       // console.log(res.data);
       setMylist(res.data);
     });
@@ -27,16 +27,16 @@ const MyListOfSpot = () => {
     myTouristData();
   }, []);
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then(result => {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
       if (result.isConfirmed) {
         axios
           .delete(
@@ -45,9 +45,9 @@ const MyListOfSpot = () => {
           .then(() => {
             // console.log(data);
             Swal.fire({
-              title: 'Deleted!',
-              text: 'User data has been deleted.',
-              icon: 'success',
+              title: "Deleted!",
+              text: "User data has been deleted.",
+              icon: "success",
             });
             myTouristData();
           });
@@ -56,7 +56,7 @@ const MyListOfSpot = () => {
   };
   const [modalData, setModalData] = useState({});
 
-  const handleUpdateSpot = e => {
+  const handleUpdateSpot = (e) => {
     e.preventDefault();
 
     const id = modalData._id;
@@ -87,20 +87,20 @@ const MyListOfSpot = () => {
     // console.log(UpdateTouristSpot);
 
     fetch(`https://adventure-travel-server.vercel.app/tourist-spot/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(UpdateTouristSpot),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         // console.log(data);
 
         if (data.modifiedCount > 0) {
           Swal.fire({
-            icon: 'success',
-            title: 'Successfully Updated Your Tourist Spot Data',
+            icon: "success",
+            title: "Successfully Updated Your Tourist Spot Data",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -110,7 +110,7 @@ const MyListOfSpot = () => {
         } else {
           Swal.fire({
             title:
-              'Not updated. Please Make Some Changes On Your Data And Try Again.',
+              "Not updated. Please Make Some Changes On Your Data And Try Again.",
             showConfirmButton: true,
           });
         }
@@ -122,42 +122,35 @@ const MyListOfSpot = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="max-w-7xl container mx-auto px-5 ">
+    <div className="">
       <Helmet>
         <title>Adventure Travel | My Tourist Spots List</title>
       </Helmet>
-      <div>
-        <div>
-          {/* <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
-            <Slide>
-              <h1 className="text-2xl md:text-4xl font-bold text-white">
-                Your Tourist Spots List
-              </h1>
-            </Slide>
-          </div> */}
 
-          <div>
-            <div className="text-center w-full px-0 md:px-32 mx-auto">
-              <h4 className="text-4xl font-bold underline mb-5">
-                Your Tourists Spot List
-              </h4>
-              <div className=" text-left">
-                <h4 className="text xl font-bold"> User Name: {userName}</h4>
-                <h4 className="text xl font-bold"> User Email: {email}</h4>
-                <h4 className="text xl font-bold">
-                  Total Tourists Spot : {mylist?.length}
-                </h4>
-              </div>
-            </div>
+      <div className="w-full text-center relative text-white bg-[url(https://i.postimg.cc/MpQKC7DZ/page-title.jpg)] bg-no-repeat bg-cover bg-center py-10">
+        <div className="bg-black bg-opacity-40 inset-0 absolute"></div>
+        <div className="text-center w-full  mx-auto max-w-7xl relative z-10">
+          <h4 className="text-4xl font-bold underline mb-5">
+            Your Tourists Spot List
+          </h4>
+          <div className=" text-left">
+            <h4 className="text xl font-bold"> User Name: {userName}</h4>
+            <h4 className="text xl font-bold"> User Email: {email}</h4>
+            <h4 className="text xl font-bold">
+              Total Tourists Spot : {mylist?.length}
+            </h4>
           </div>
-          <div className="divider w-full mb-10 px-0 md:px-32 "></div>
+        </div>
+      </div>
 
-          <div className="px-0 md:px-32 ">
+      <div className="max-w-7xl container mx-auto mt-5 ">
+        <div>
+          <div className="px-0  ">
             {mylist && mylist?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
                   {/* head */}
-                  <thead>
+                  <thead className="bg-gray-200">
                     <tr>
                       <th>No:</th>
                       <th>Image</th>

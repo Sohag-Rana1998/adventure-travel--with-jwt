@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import UseAllSpotData from '../../Components/useHooks/useAllSpotData/UseAllSpotData';
-import SingleTouristSpot from './SingleTouristSpot';
-import { IoIosArrowDropdown } from 'react-icons/io';
-import { Helmet } from 'react-helmet';
-import { ScrollRestoration } from 'react-router-dom';
-import { useTypewriter } from 'react-simple-typewriter';
+import { useEffect, useState } from "react";
+import UseAllSpotData from "../../Components/useHooks/useAllSpotData/UseAllSpotData";
+import SingleTouristSpot from "./SingleTouristSpot";
+import { IoIosArrowDropdown } from "react-icons/io";
+import { Helmet } from "react-helmet";
+import { ScrollRestoration } from "react-router-dom";
+import { useTypewriter } from "react-simple-typewriter";
 const AllTouristSpot = () => {
   const { data, isLoading } = UseAllSpotData();
   const [displayData, setDisplayData] = useState([]);
@@ -38,11 +38,11 @@ const AllTouristSpot = () => {
   };
 
   const [text] = useTypewriter({
-    words: ['MODERN & BEAUTIFUL'],
+    words: ["MODERN & BEAUTIFUL"],
     loop: 1,
   });
   const [text2] = useTypewriter({
-    words: ['Our Most Popular Adventures Here'],
+    words: ["Our Most Popular Adventures Here"],
     loop: 1,
     typeSpeed: 50,
     deleteSpeed: 50,
@@ -57,40 +57,43 @@ const AllTouristSpot = () => {
       <Helmet>
         <title>Adventure Travel | All Tourist Spots</title>
       </Helmet>
-      <div className="text-center ">
-        <h3 className="text-xl font-bold underline underline-offset-4">
+      <div className="w-full text-center relative text-white bg-[url(https://i.postimg.cc/MpQKC7DZ/page-title.jpg)] bg-no-repeat bg-cover bg-center pt-14 pb-10">
+        <div className="bg-black bg-opacity-40 inset-0 absolute"></div>
+        <h3 className="text-xl relative z-10 font-bold underline underline-offset-4">
           {text}
         </h3>
-        <h1 className="text-5xl font-bold">{text2}</h1>
-      </div>
-      <div className="w-full flex justify-end mb-5">
-        <div className="mr-4 w-52 md:mr-10">
-          <div className="dropdown dropdown-bottom">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn m-1 flex border-2 border-blue-500 bg-blue-500 items-center font-bold gap-3 "
-            >
-              Short By Cost <IoIosArrowDropdown className="text-xl" />
+        <h1 className="text-4xl relative z-10 font-bold">{text2}</h1>
+        <div className="flex justify-end max-w-7xl mx-auto">
+          <div className="w-52">
+            <div className="dropdown dropdown-bottom">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn m-1 text-white flex border-2 border-blue-500 bg-blue-500 items-center font-bold gap-3 "
+              >
+                Short By Cost <IoIosArrowDropdown className="text-xl" />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li onClick={handleShort1}>
+                  <a>Lower Cost to Higher</a>
+                </li>
+                <li onClick={handleShort2}>
+                  <a>Higher Cost to Lower</a>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li onClick={handleShort1}>
-                <a>Lower Cost to Higher</a>
-              </li>
-              <li onClick={handleShort2}>
-                <a>Higher Cost to Lower</a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {displayData?.map(spot => (
-          <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
-        ))}
+      <div className="max-w-7xl w-full mx-auto mt-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {displayData?.map((spot) => (
+            <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
+          ))}
+        </div>
       </div>
       <ScrollRestoration />
     </div>

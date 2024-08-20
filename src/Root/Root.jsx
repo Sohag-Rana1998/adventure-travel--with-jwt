@@ -1,8 +1,8 @@
-import { Outlet, ScrollRestoration } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import NavBar from '../Components/Shared/Nav/Nav';
-import Footer from '../Components/Shared/Footer/Footer';
-import { useEffect, useState } from 'react';
+import { Outlet, ScrollRestoration } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import NavBar from "../Components/Shared/Nav/Nav";
+import Footer from "../Components/Shared/Footer/Footer";
+import { useEffect, useState } from "react";
 
 const Root = () => {
   const [loading, setLoading] = useState(true);
@@ -14,14 +14,18 @@ const Root = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className=" max-w-screen-2xl container  mx-auto">
-      <div className="max-w-7xl px-3  container mx-auto">
-        <NavBar></NavBar>
-        <div className="pt-24">
-          <Outlet></Outlet>
-        </div>
+    <div className="">
+      <div>
+        <NavBar />
       </div>
-      <Footer></Footer>
+
+      <div className="pt-32  px-3 md:px-0  w-full mx-auto">
+        <Outlet />
+      </div>
+
+      <div>
+        <Footer />
+      </div>
       <ToastContainer
         position="top-center"
         autoClose={2500}
@@ -33,7 +37,7 @@ const Root = () => {
         draggable
         pauseOnHover
         theme="light"
-      ></ToastContainer>
+      />
       <ScrollRestoration />
     </div>
   );

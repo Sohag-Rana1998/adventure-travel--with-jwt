@@ -1,52 +1,67 @@
-import { Avatar } from '@material-tailwind/react';
-import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
-import Swal from 'sweetalert2';
-import useAuth from '../../useHooks/useAuth/useAuth';
+import { Avatar } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { CgLogIn } from "react-icons/cg";
+import { IoLogOutOutline } from "react-icons/io5";
+import Swal from "sweetalert2";
+import useAuth from "../../useHooks/useAuth/useAuth";
+import NavTop from "./NavTop";
+import { FaUser } from "react-icons/fa6";
 
 const NavBar = () => {
-  const localTheme = localStorage.getItem('theme');
+  const localTheme = localStorage.getItem("theme");
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localTheme);
   const [type, setType] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     setTimeout(setLoading, 500, false);
   }, []);
   useEffect(() => {
-    localStorage.setItem('theme', theme);
-    const localTheme = localStorage.getItem('theme');
-    if (localTheme == 'synthwave') {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme == "synthwave") {
       setType(true);
     } else {
       setType(false);
     }
-    document.querySelector('html').setAttribute('data-theme', localTheme);
+    document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  const handleToggle = e => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.pageYOffset;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleToggle = (e) => {
     setType(!type);
     console.log(type);
     if (e.target.checked) {
-      setTheme('synthwave');
+      setTheme("synthwave");
     } else {
-      setTheme('light');
+      setTheme("light");
     }
   };
 
   const handleLogout = () => {
     logOut()
-      .then(result => {
+      .then((result) => {
         console.log(result);
         Swal.fire({
-          icon: 'success',
-          title: 'Log Out successful',
+          icon: "success",
+          title: "Log Out successful",
           showConfirmButton: false,
           timer: 1500,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error.message);
       });
     // console.log(user);
@@ -59,14 +74,14 @@ const NavBar = () => {
           onChange={handleToggle}
           type="checkbox"
           value="synthwave"
-          className="toggle theme-controller h-7 md:h-8 w-16 bg-orange-500 row-start-1 col-start-1 col-span-2"
+          className="toggle theme-controller h-7 w-14 bg-orange-500 row-start-1 col-start-1 col-span-2"
           checked={type}
         />
         <svg
           className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -102,10 +117,10 @@ const NavBar = () => {
           to="/"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? "border-2 font-bold  border-[#0766AD]"
               : isPending
-              ? 'pending'
-              : ''
+              ? "pending"
+              : ""
           }
         >
           Home
@@ -116,10 +131,10 @@ const NavBar = () => {
           to="/all-tourist-spot"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? "border-2 font-bold  border-[#0766AD]"
               : isPending
-              ? 'pending'
-              : ''
+              ? "pending"
+              : ""
           }
         >
           All Tourists Spot
@@ -130,10 +145,10 @@ const NavBar = () => {
           to="/add_tourist_spot"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? "border-2 font-bold  border-[#0766AD]"
               : isPending
-              ? 'pending'
-              : ''
+              ? "pending"
+              : ""
           }
         >
           Add Tourists Spot
@@ -144,10 +159,10 @@ const NavBar = () => {
           to="/my-tourist-spot-list"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? "border-2 font-bold  border-[#0766AD]"
               : isPending
-              ? 'pending'
-              : ''
+              ? "pending"
+              : ""
           }
         >
           My List
@@ -159,10 +174,10 @@ const NavBar = () => {
           to="/contact-us"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? "border-2 font-bold  border-[#0766AD]"
               : isPending
-              ? 'pending'
-              : ''
+              ? "pending"
+              : ""
           }
         >
           Contact Us
@@ -171,132 +186,158 @@ const NavBar = () => {
     </div>
   );
 
+  // fixed z-30 w-full transition-top  duration-500  ease-in-out ${isScrolled ? "top-0" : ""}
   return loading ? (
     <div className="w-full"></div>
   ) : (
-    <div className="navbar max-w-7xl fixed z-30 container pt-2 mx-auto  bg-base-100">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
-          >
-            {Links}
-            <div className="navbar-end mt-2 ">
-              <div className=" ">
-                {user ? (
-                  <div className="">
-                    <Avatar
-                      title={user?.displayName || ''}
-                      src={
-                        (user && user?.photoURL) ||
-                        'https://i.ibb.co/zmbRY07/images.png'
-                      }
-                      className="mr-4 mb-2 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
-                    />
-
-                    <button
-                      onClick={handleLogout}
-                      className="btn w-32  bg-blue-600 hover:bg-blue-gray-900   text-white"
-                    >
-                      Log Out
-                    </button>
-                  </div>
-                ) : (
-                  <div>
-                    <Link to={'/login'}>
-                      <button className="btn w-32 btn-bg mr-3 text-white">
-                        Log In
-                      </button>
-                    </Link>
-                    <Link to={'/register'}>
-                      <button className="btn w-32 btn-bg mr-3 text-white">
-                        Register
-                      </button>
-                    </Link>
-                  </div>
-                )}
+    <div className="fixed z-30 w-full ">
+      <div
+        className={`w-full relative transition-bottom  duration-700 ${
+          isScrolled ? "-top-28" : "top-0"
+        }`}
+      >
+        <NavTop />
+      </div>
+      <div
+        className={`w-full relative   transition-top  pb-0 duration-500 ${
+          isScrolled ? "-top-16 !bg-[#061A3A] text-white" : "top-0 bg-white"
+        } ${type ? "bg-[#061A3A] text-white" : "bg-white text-black"}`}
+      >
+        <div className="navbar max-w-7xl container  mx-auto p-0 ">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost lg:hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
               </div>
-            </div>
-          </ul>
-        </div>
-        <div className="flex w-full justify-between items-center ">
-          <Link to={'/'}>
-            <button className=" py-2 rounded-xl w-auto text-xl font-bold text-blue-600">
-              Adventure Travel
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div className="flex md:hidden justify-end items-center w-full mx-5">
-        <div className="block md:hidden ">{themeButton}</div>
-      </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
+              >
+                {Links}
+                <div className="navbar-end mt-2 ">
+                  <div className=" ">
+                    {user ? (
+                      <div className="">
+                        <Avatar
+                          title={user?.displayName || ""}
+                          src={
+                            (user && user?.photoURL) ||
+                            "https://i.ibb.co/zmbRY07/images.png"
+                          }
+                          className="mr-4 mb-2 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
+                        />
 
-      <div className="navbar-center hidden  lg:flex">
-        <ul className="menu menu-horizontal px-1"> {Links}</ul>
-      </div>
-
-      <div className="navbar-end hidden md:flex lg:flex">
-        <div className="flex  ">
-          {user ? (
-            <div className="flex gap-3 justify-between items-center">
-              {themeButton}
-              <nav className="relative parent ">
-                <ul className="flex items-start gap-2">
-                  <li>
-                    <Avatar
-                      src={
-                        (user && user?.photoURL) ||
-                        'https://i.ibb.co/zmbRY07/images.png'
-                      }
-                      className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
-                    />
-                    <ul className="dropDown">
-                      <div className="w-auto dropdownMenu duration-500   z-10  py-3 px-5   ">
-                        <div>
-                          <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold text-xl p-2 rounded-md mb-2">
-                            {user?.displayName || ''}
-                          </h2>
-                          <button
-                            onClick={handleLogout}
-                            className="btn hover:bg-blue-500 bg-gray-500   mr-3 text-white"
-                          >
-                            Log Out
-                          </button>
-                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="btn w-32  bg-blue-600 hover:bg-blue-gray-900   text-white"
+                        >
+                          Log Out
+                        </button>
                       </div>
+                    ) : (
+                      <div>
+                        <Link to={"/login"}>
+                          <button className="btn w-32 btn-bg mr-3 text-white border-none focus:outline-none">
+                            <CgLogIn /> Log In
+                          </button>
+                        </Link>
+                        <Link to={"/register"}>
+                          <button className="btn w-32 btn-bg text-white border-none focus:outline-none">
+                            Register
+                          </button>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </ul>
+            </div>
+            <div className="flex w-full justify-between items-center ">
+              <Link to={"/"}>
+                <img
+                  src="https://i.postimg.cc/0y4sGf8c/logo.png"
+                  alt="LOGO"
+                  className="h-20 w-20"
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="flex md:hidden justify-end items-center w-full mx-5">
+            <div className="block md:hidden ">{themeButton}</div>
+          </div>
+
+          <div className="navbar-center hidden  lg:flex">
+            <ul className="menu menu-horizontal px-1"> {Links}</ul>
+          </div>
+
+          <div className="navbar-end hidden md:flex lg:flex">
+            <div className="flex  ">
+              {user ? (
+                <div className="flex gap-3 justify-between items-center">
+                  {themeButton}
+                  <nav className="relative parent ">
+                    <ul className="flex items-start gap-2">
+                      <li>
+                        <Avatar
+                          src={
+                            (user && user?.photoURL) ||
+                            "https://i.ibb.co/zmbRY07/images.png"
+                          }
+                          className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
+                        />
+                        <ul className="dropDown">
+                          <div className="w-auto dropdownMenu duration-500   z-10  py-3 px-5   ">
+                            <div className="flex flex-col justify-end">
+                              <h2 className="w-full bg-blue-500 hover:bg-gray-900 text-white font-semibold text-lg p-2 rounded-md mb-2">
+                                {user?.displayName || ""}
+                              </h2>
+                              <button
+                                onClick={handleLogout}
+                                className="btn bg-blue-500 flex items-center gap-2 hover:bg-gray-900  text-white"
+                              >
+                                Log Out <IoLogOutOutline />
+                              </button>
+                            </div>
+                          </div>
+                        </ul>
+                      </li>
                     </ul>
-                  </li>
-                </ul>
-              </nav>
+                  </nav>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  {themeButton}
+                  <Link to={"/login"}>
+                    <button className="btn w-32 btn-bg mr-3 text-white border-none focus:outline-none">
+                      <CgLogIn /> Log In
+                    </button>
+                  </Link>
+                  <Link to={"/register"}>
+                    <button className="btn w-32 btn-bg mr-3 text-white border-none focus:outline-none">
+                      <FaUser /> Register
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              {themeButton}
-              <Link to={'/login'}>
-                <button className="btn btn-bg mr-3 text-white">Log In</button>
-              </Link>
-              <Link to={'/register'}>
-                <button className="btn btn-bg mr-3 text-white">Register</button>
-              </Link>
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

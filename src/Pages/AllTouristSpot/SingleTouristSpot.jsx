@@ -3,12 +3,12 @@ import {
   CardBody,
   CardHeader,
   Typography,
-} from '@material-tailwind/react';
-import PropTypes from 'prop-types';
-import { FaLocationDot } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
-import { MdOutlineWatchLater } from 'react-icons/md';
-import { TiWeatherPartlySunny } from 'react-icons/ti';
+} from "@material-tailwind/react";
+import PropTypes from "prop-types";
+import { FaLocationDot } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 
 const SingleTouristSpot = ({ spot }) => {
   const {
@@ -77,17 +77,17 @@ const SingleTouristSpot = ({ spot }) => {
                   className="w-8 h-8 rounded-full"
                   src="https://i.postimg.cc/q7zxnxhs/download.jpg"
                   alt=""
-                />{' '}
+                />{" "}
                 Visitor Per Year: About {visitor}
               </div>
             </div>
 
             <div className="w-full flex justify-end  mt-3">
               <Link to={`/view-details/${_id}`}>
-                {' '}
+                {" "}
                 <Button
                   size="lg"
-                  className="w-full md:w-40 text-white  hover:bg-[#88195f] bg-blue-500"
+                  className="w-full md:w-40 text-white  hover:bg-gray-900 bg-blue-500"
                 >
                   View Details
                 </Button>

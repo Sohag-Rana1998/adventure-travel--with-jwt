@@ -12,22 +12,21 @@ import { getAuth, updateProfile } from 'firebase/auth';
 
 import app from '../../../Firebase/firebase.config';
 import useAuth from '../../Components/useHooks/useAuth/useAuth';
+import axios from 'axios';
 
 const Register = () => {
   const [type, setType] = useState(false);
-  const {
-    emailVerify,
-    createUserByEmailAndPassword,
-    signInWithGithub,
-    signInWithGoogle,
-  } = useAuth();
+  const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =
+    useAuth();
   const auth = getAuth(app);
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const name = e.target.name.value;
-    const photo = e.target.photo.value;
+    const image = e.target.photo.files[0];
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const formData = new FormData();
+    formData.append('image', image);
 
     if (!/[A-Z]/.test(password)) {
       toast.warn('Your Password Should Have One Uppercase Letter.');
@@ -40,36 +39,34 @@ const Register = () => {
       return;
     }
     // console.log(name, email, photo, password);
-
-    createUserByEmailAndPassword(email, password)
-      .then(() => {
-        emailVerify();
-        updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: photo,
-        })
-          .then(() => {})
-          .catch(error => {
-            console.error(error);
-          });
-
-        navigate('/');
-
-        Swal.fire({
-          icon: 'success',
-          title: 'Congratulation! Your account is registered successfully',
-          showConfirmButton: true,
-        });
-      })
-      .catch(error => {
-        console.error(error.message);
-        Swal.fire({
-          icon: 'error',
-          title: error.message,
-          showConfirmButton: false,
-          timer: 2000,
-        });
+    try {
+      const { data } = await axios.post(
+        'https://api.imgbb.com/1/upload?&key=2de4c1f472c4c211f51f4b495b3bea1d',
+        formData
+      );
+      const photo = data.data.display_url;
+      const result = await createUserByEmailAndPassword(email, password);
+      console.log(result);
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
       });
+
+      navigate('/');
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Congratulation! Your account is registered successfully',
+        showConfirmButton: true,
+      });
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: err.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   const navigate = useNavigate();
@@ -156,10 +153,11 @@ const Register = () => {
                 Your Photo URL
               </label>
               <input
-                type="text"
+                type="file"
                 name="photo"
                 id="photo"
-                placeholder="Your Photo URL"
+                accept="photo/*"
+                // placeholder="Your Photo URL"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 "
               />
             </div>

@@ -2,14 +2,13 @@
 
 ## WEBSITE LINK: https://travel-zone-client-side.web.app/
 
-### My selected Category Name is: Southeast Asia.
-
-#### Packages i have used in my website for challenge requirement:
-
-1. React-simple-typewriter,
-2. React Awesome reveal,
-
 ### Features and Characteristics Of My Website:
+
+1.  Implemented functionalities for adding, deleting, and updating tourist spots.
+2.  Dynamic and responsive UI with React.js and Tailwind CSS.
+3.  User authentication and session management using JWT and Firebase.
+
+### What I used:
 
 - I have used tailwind css for this project. Because tailwind css is much easier
   to use and easy to design and easy to make website responsive.
@@ -23,8 +22,8 @@
 - I have used react icons for implement icon in my website. react icons is easy
   to use and get the icons in short time and using role is much easy.
 
-  - I have use React Awesomereveal and React-simple-typewriter packages to user
-    interaction and make the website beautiful.
+- I have use React Awesomereveal and React-simple-typewriter packages to user
+  interaction and make the website beautiful.
 
 - I have used Swiper slider component for slider purpose, because swiper slider
   component very much easy to use and it has varies type of slide to use. I have
@@ -56,3 +55,23 @@
 
   To know More information about my website please visit my website and see all
   the features and information about my website. Thank You.
+
+# Running the Client Side using bash
+
+1. Clone the Repository:
+
+- git clone https://github.com/Sohag-Rana1998/adventure-travel--with-jwt.git
+- cd E-store-client
+
+2. Install Dependencies:
+
+- npm install
+
+3. Set Up Environment Variables:
+
+- Create a .env.local file in the project root directory and add the necessary
+  environment variables.
+
+  4. Run the Application:
+
+  - npm run dev

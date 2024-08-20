@@ -1,5 +1,5 @@
-import { Card, CardBody } from '@material-tailwind/react';
-import { Zoom } from 'react-awesome-reveal';
+import { Card, CardBody } from "@material-tailwind/react";
+import { Zoom } from "react-awesome-reveal";
 
 const WhyChooseUs = () => {
   return (
@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
         <Card className="w-full h-full flex flex-col items-center justify-center">
           <div className="w-full">
             <img
-              src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-1.jpg"
+              src="https://i.postimg.cc/P5zt4wq0/feature-1.jpg"
               alt=""
               className="w-full h-52 rounded-t-2xl"
             />
@@ -26,7 +26,7 @@ const WhyChooseUs = () => {
         <Card className="w-full h-full  flex flex-col items-center justify-center">
           <div className="w-full">
             <img
-              src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-2.jpg"
+              src="https://i.postimg.cc/Mp86VDzy/feature-2.jpg"
               alt=""
               className="w-full h-52 rounded-t-2xl"
             />
@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
         <Card className="w-full h-full  flex flex-col items-center justify-center">
           <div className="w-full">
             <img
-              src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-3.jpg"
+              src="https://i.postimg.cc/xCqnnpPS/feature-3.jpg"
               alt=""
               className="w-full h-52 rounded-t-2xl"
             />
@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
         <Card className="w-full h-full  flex flex-col items-center justify-center">
           <div className="w-full">
             <img
-              src="https://travio.smartdemowp.com/wp-content/uploads/2021/02/feature-4.jpg"
+              src="https://i.postimg.cc/W3Kj3m9q/feature-4.jpg"
               alt=""
               className="w-full h-52 rounded-t-2xl"
             />
