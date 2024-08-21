@@ -1,13 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-const UseAllSpotData = () => {
-  const { data, isLoading, refetch } = useQuery({
-    queryKey: ['user'],
+const UseAllSpotData = (itemsPerPage, currentPage, sort) => {
+  const {
+    data = {},
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["all-tourist-spots"],
     queryFn: async () => {
-      const res = await fetch(
-        'https://adventure-travel-server.vercel.app/tourist-spot'
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_API_URL
+        }/tourist-spot?size=${itemsPerPage}&page=${currentPage}&sort=${sort}`
       );
-      const data = await res.json();
+
       return data;
     },
   });

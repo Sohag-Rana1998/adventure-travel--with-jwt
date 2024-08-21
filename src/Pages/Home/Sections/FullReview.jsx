@@ -1,8 +1,8 @@
-import { Rating } from '@material-tailwind/react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { useParams } from 'react-router-dom';
+import { Rating } from "@material-tailwind/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 const FullReview = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const FullReview = () => {
     setTimeout(setLoading, 800, false);
     axios
       .get(`https://adventure-travel-server.vercel.app/testimonials/${id}`)
-      .then(data => {
+      .then((data) => {
         setReview(data.data);
       });
   }, [id]);
@@ -23,7 +23,7 @@ const FullReview = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="px-0 md:px-32">
+    <div className="px-0 md:px-32 my-10">
       <Helmet>
         <title>Adventure Travel | Details Review</title>
       </Helmet>

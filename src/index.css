@@ -33,5 +33,5 @@ nav ul li:hover ul.dropDown {
 }
 
 .zoom-infinite {
-  animation: zoomIn 10s ease-in-out infinite;
+  animation: zoomIn 12s ease-in-out infinite;
 }

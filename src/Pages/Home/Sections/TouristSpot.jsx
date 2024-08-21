@@ -1,8 +1,8 @@
-import { Button } from '@material-tailwind/react';
-import UseAllSpotData from '../../../Components/useHooks/useAllSpotData/UseAllSpotData';
-import SingleTouristSpot from '../../AllTouristSpot/SingleTouristSpot';
-import { Link } from 'react-router-dom';
-import { Slide } from 'react-awesome-reveal';
+import { Button } from "@material-tailwind/react";
+import UseAllSpotData from "../../../Components/useHooks/useAllSpotData/UseAllSpotData";
+import SingleTouristSpot from "../../AllTouristSpot/SingleTouristSpot";
+import { Link } from "react-router-dom";
+import { Slide } from "react-awesome-reveal";
 
 const TouristSpot = () => {
   const { data } = UseAllSpotData();
@@ -18,15 +18,18 @@ const TouristSpot = () => {
         </Slide>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {data?.slice(0, 9)?.map(spot => (
+        {data?.result?.slice(0, 6)?.map((spot) => (
           <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
         ))}
       </div>
-      <div className="w-full flex justify-end">
-        <Link to={'/all-tourist-spot'}>
-          {' '}
-          <Button size="lg" className="bg-orange-500 my-5">
-            Show More
+      <div className="w-full flex justify-center">
+        <Link to={"/all-tourist-spot"}>
+          {" "}
+          <Button
+            size="lg"
+            className="bg-blue-500 text-white hover:bg-gray-900 my-5"
+          >
+            Explore More
           </Button>
         </Link>
       </div>

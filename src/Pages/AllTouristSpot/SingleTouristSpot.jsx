@@ -46,7 +46,7 @@ const SingleTouristSpot = ({ spot }) => {
           </div>
         </CardHeader>
         <CardBody className="px-3 h-auto  m-0 ">
-          <div className="flex  h-full md:h-[300px] flex-col justify-between">
+          <div className="flex  h-full md:h-[200px] flex-col justify-between">
             <div>
               <Typography className="text-2xl ">
                 Enjoy The Beauty Of {spotName}
@@ -66,19 +66,6 @@ const SingleTouristSpot = ({ spot }) => {
                 <div className="w-full lg:w-32 py-2 border flex justify-center items-center gap-2 text-center bg-black/10  rounded-xl ">
                   <MdOutlineWatchLater /> {travelTime} Days
                 </div>
-              </div>
-            </div>
-            <div>
-              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center  bg-black/10 rounded-t-xl ">
-                <TiWeatherPartlySunny /> Seasonality: {season}
-              </div>
-              <div className="w-full py-2 border flex justify-center items-center gap-2 text-center bg-black/10 ">
-                <img
-                  className="w-8 h-8 rounded-full"
-                  src="https://i.postimg.cc/q7zxnxhs/download.jpg"
-                  alt=""
-                />{" "}
-                Visitor Per Year: About {visitor}
               </div>
             </div>
 

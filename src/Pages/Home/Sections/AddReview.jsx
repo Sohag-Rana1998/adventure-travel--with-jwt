@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { Helmet } from 'react-helmet';
-import { ScrollRestoration } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet";
+import { ScrollRestoration } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddReview = () => {
-  const handleAddReview = e => {
+  const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const img = form.photo.value;
@@ -22,19 +22,19 @@ const AddReview = () => {
       user,
     };
     // console.log(addReview);
-    fetch('https://adventure-travel-server.vercel.app/add-testimonials', {
-      method: 'POST',
+    fetch("https://adventure-travel-server.vercel.app/add-testimonials", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(addReview),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(() => {
         // console.log(data);
         Swal.fire({
-          icon: 'success',
-          title: 'Thank You. Successfully Added Your Review',
+          icon: "success",
+          title: "Thank You. Successfully Added Your Review",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -138,7 +138,7 @@ const AddReview = () => {
             rows="5"
           ></textarea>
           <input
-            className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ab3154]  bg-[#FF497C] duration-200 text-white cursor-pointer font-semibold"
+            className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ab3154]  bg-blue-500 duration-200 text-white cursor-pointer font-semibold"
             type="submit"
             value="Add Review"
           />

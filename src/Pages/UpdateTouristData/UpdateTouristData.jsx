@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { ScrollRestoration, useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from "react-router-dom";
 
-import Swal from 'sweetalert2';
-import { Helmet } from 'react-helmet';
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
-import useAuth from '../../Components/useHooks/useAuth/useAuth';
-import useAxiosSecure from '../../Components/useHooks/useAxiosSecure/useAxiosSecure';
+import useAuth from "../../Components/useHooks/useAuth/useAuth";
+import useAxiosSecure from "../../Components/useHooks/useAxiosSecure/useAxiosSecure";
 
 const UpdateTouristData = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,7 +20,7 @@ const UpdateTouristData = () => {
 
   useEffect(() => {
     setLoading(true);
-    axiosSecure.get(`/tourist-spot/${id}`).then(data => {
+    axiosSecure.get(`/tourist-spot/${id}`).then((data) => {
       setSpot(data.data);
     });
     setTimeout(setLoading, 500, false);
@@ -38,7 +38,7 @@ const UpdateTouristData = () => {
     visitor,
   } = spot;
 
-  const handleUpdateSpot = e => {
+  const handleUpdateSpot = (e) => {
     e.preventDefault();
     setLoading(true);
     const form = e.target;
@@ -47,11 +47,11 @@ const UpdateTouristData = () => {
     const CountryName = form.countryName.value;
     const location = form.location.value;
     const description = form.description.value;
-    const averageCost = form.averageCost.value;
+    const averageCost = parseFloat(form.averageCost.value);
     const season = form.seasonality.value;
     const travelTime = form.travelTime.value;
     const visitor = form.visitor.value;
-
+    console.log(averageCost);
     const id = spot._id;
     const UpdateTouristSpot = {
       photo,
@@ -69,20 +69,20 @@ const UpdateTouristData = () => {
     // console.log(UpdateTouristSpot);
 
     fetch(`https://adventure-travel-server.vercel.app/tourist-spot/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(UpdateTouristSpot),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         // console.log(data);
 
         if (data.modifiedCount > 0) {
           Swal.fire({
-            icon: 'success',
-            title: 'Successfully Updated Your Tourist Spot Data',
+            icon: "success",
+            title: "Successfully Updated Your Tourist Spot Data",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -90,7 +90,7 @@ const UpdateTouristData = () => {
           form.reset();
         } else {
           Swal.fire({
-            title: 'Please Make Some Changes To Update Your Tourists Spot Data',
+            title: "Please Make Some Changes To Update Your Tourists Spot Data",
             showConfirmButton: true,
           });
         }
