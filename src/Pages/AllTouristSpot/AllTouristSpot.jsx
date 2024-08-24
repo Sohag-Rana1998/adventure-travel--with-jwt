@@ -15,7 +15,7 @@ const AllTouristSpot = () => {
     sort
   );
 
-  console.log(data);
+  // console.log(data);
 
   const [loading, setLoading] = useState(false);
   const page = data?.totalPages;
@@ -66,14 +66,14 @@ const AllTouristSpot = () => {
     setTimeout(setLoading, 1000, false);
   };
   const handleSeeAll = () => {
-    // setLoader(true);
-    // setSearch("");
-    // setBrand("");
-    // setCategory("");
-    // setMaxPrice(0);
-    // setMinPrice(0);
-    // setSortOrder("");
-    // setTimeout(setLoader, 1000, false);
+    setLoader(true);
+    setSearch("");
+    setBrand("");
+    setCategory("");
+    setMaxPrice(0);
+    setMinPrice(0);
+    setSortOrder("");
+    setTimeout(setLoader, 1000, false);
   };
 
   return isLoading || loading ? (

@@ -186,7 +186,6 @@ const NavBar = () => {
     </div>
   );
 
-  // fixed z-30 w-full transition-top  duration-500  ease-in-out ${isScrolled ? "top-0" : ""}
   return loading ? (
     <div className="w-full"></div>
   ) : (
@@ -200,7 +199,9 @@ const NavBar = () => {
       </div>
       <div
         className={`w-full relative   transition-top  pb-0 duration-500 ${
-          isScrolled ? "-top-16 !bg-[#061A3A] text-white" : "top-0 bg-white"
+          isScrolled
+            ? "-top-[92px] md:-top-[52px] !bg-[#061A3A] text-white"
+            : "top-0 bg-white"
         } ${type ? "bg-[#061A3A] text-white" : "bg-white text-black"}`}
       >
         <div className="navbar max-w-7xl container  mx-auto p-0 ">
@@ -228,7 +229,7 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
+                className="menu menu-sm text-black dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
               >
                 {Links}
                 <div className="navbar-end mt-2 ">
@@ -274,7 +275,7 @@ const NavBar = () => {
                 <img
                   src="https://i.postimg.cc/0y4sGf8c/logo.png"
                   alt="LOGO"
-                  className="h-20 w-20"
+                  className="h-16 w-16"
                 />
               </Link>
             </div>

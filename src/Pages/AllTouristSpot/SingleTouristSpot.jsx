@@ -18,8 +18,6 @@ const SingleTouristSpot = ({ spot }) => {
     CountryName,
     location,
     averageCost,
-    season,
-    visitor,
     travelTime,
   } = spot;
   return (
@@ -34,7 +32,7 @@ const SingleTouristSpot = ({ spot }) => {
           <div className="relative">
             <img
               src={photo}
-              className="w-full rounded-t-2xl  h-72 hover:scale-[110%] duration-700"
+              className="w-full rounded-t-2xl  h-60 hover:scale-[110%] duration-700"
               alt="ui/ux review check"
             />
 
@@ -45,43 +43,44 @@ const SingleTouristSpot = ({ spot }) => {
             </div>
           </div>
         </CardHeader>
-        <CardBody className="px-3 h-auto  m-0 ">
-          <div className="flex  h-full md:h-[200px] flex-col justify-between">
+        <div className="px-3 h-auto  mt-2 ">
+          <div className="flex  flex-col justify-between">
             <div>
-              <Typography className="text-2xl ">
+              <Typography className="text-xl font-bold">
                 Enjoy The Beauty Of {spotName}
               </Typography>
-              <Typography className="text-xl flex items-center gap-2">
-                <FaLocationDot />
-                {location}
-              </Typography>
 
-              <div className="flex flex-col md:flex-row items-start justify-between md:items-center">
-                <Typography className="  ">
-                  <span className="text-blue-500 text-xl font-bold">
-                    ${averageCost}
-                  </span>
-                  /Per Person
+              <div className="flex flex-row items-start justify-between">
+                <Typography className="text-sm flex items-start gap-2">
+                  <FaLocationDot />
+                  {location}
                 </Typography>
-                <div className="w-full lg:w-32 py-2 border flex justify-center items-center gap-2 text-center bg-black/10  rounded-xl ">
+
+                <div className="p-2 w-28 border flex justify-center items-center gap-1 text-center text-sm bg-black/10  rounded-xl ">
                   <MdOutlineWatchLater /> {travelTime} Days
                 </div>
               </div>
             </div>
 
-            <div className="w-full flex justify-end  mt-3">
+            <div className="w-full flex justify-between items-center  mt-2 mb-3">
+              <Typography className="  ">
+                <span className="text-blue-500 text-md font-bold">
+                  ${averageCost}
+                </span>
+                /Per Person
+              </Typography>
               <Link to={`/view-details/${_id}`}>
                 {" "}
                 <Button
-                  size="lg"
-                  className="w-full md:w-40 text-white  hover:bg-gray-900 bg-blue-500"
+                  size="sm"
+                  className="w-full md:w-32 text-white  hover:bg-gray-900 bg-blue-500"
                 >
                   View Details
                 </Button>
               </Link>
             </div>
           </div>
-        </CardBody>
+        </div>
       </div>
     </div>
   );

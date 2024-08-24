@@ -10,7 +10,7 @@ const CountriesSpots = () => {
   const { CountryName } = useParams();
   const [loading, setLoading] = useState(true);
   const [spots, setSpots] = useState([]);
-
+  console.log(CountryName);
   useEffect(() => {
     setTimeout(setLoading, 1000, false);
     axios
@@ -29,7 +29,7 @@ const CountriesSpots = () => {
       <Helmet>
         <title>Adventure Travel | Countries Tourist Spots</title>
       </Helmet>
-      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/Y08m64hN/be.jpg)] bg-opacity-20">
+      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full  flex items-center justify-center bg-[url(https://i.postimg.cc/Y08m64hN/be.jpg)] bg-opacity-20">
         <h1 className="text-4xl font-bold text-white text-center">
           Explore The Unseen Of {CountryName}
         </h1>
@@ -39,6 +39,15 @@ const CountriesSpots = () => {
           <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
         ))}
       </div>
+      {spots <= 0 ? (
+        <>
+          <div className="my-10 text-4xl font-bold text-center w-full ">
+            No Result Found
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       <ScrollRestoration />
     </div>
   );

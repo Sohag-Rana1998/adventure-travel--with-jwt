@@ -17,8 +17,8 @@ const TouristSpot = () => {
           <h1 className="text-5xl font-bold">Our Most Popular Adventures</h1>
         </Slide>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {data?.result?.slice(0, 6)?.map((spot) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {data?.result?.slice(0, 8)?.map((spot) => (
           <SingleTouristSpot key={spot._id} spot={spot}></SingleTouristSpot>
         ))}
       </div>

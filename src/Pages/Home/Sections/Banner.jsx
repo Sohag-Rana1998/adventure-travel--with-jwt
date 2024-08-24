@@ -2,22 +2,9 @@ import { EffectFade, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { useTypewriter } from "react-simple-typewriter";
 import { GrLinkNext } from "react-icons/gr";
 const Banner = () => {
-  const [text] = useTypewriter({
-    words: ["Experience The Unseen!"],
-    loop: 3,
-  });
-  const [text2] = useTypewriter({
-    words: ["Discover The World!"],
-    loop: 3,
-    typeSpeed: 50,
-    deleteSpeed: 50,
-  });
-
   return (
     <div className=" w-full  mx-auto  ">
       <Swiper
@@ -47,11 +34,11 @@ const Banner = () => {
             <div className="h-full relative z-20 w-full flex justify-center items-center">
               <div className="flex flex-col text-white justify-center items-center ">
                 <p className="font-semibold   text-center md:text-left text-white border-b-4  ">
-                  <span>{text}</span>
+                  <span>Experience The Unseen!</span>
                 </p>
 
                 <p className="xl:text-[70px] leading-none lg:text-[60px] md:text-[40px] text-white text-[30px] font-bold text-center">
-                  {text2}
+                  Discover The World!
                 </p>
                 <p className="font-medium  md:text-lg text-center text-white">
                   Find awesome flights, hotel, tour, car and packages
@@ -59,9 +46,9 @@ const Banner = () => {
 
                 <div className="flex justify-center md:justify-start">
                   <Link to={"/all-tourist-spot"}>
-                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                    <button className="btn-bg hover:bg-gray-900 py-4 mt-3 flex items-center gap-2 px-8 rounded text-white font-semibold border-none">
                       Explore Now <GrLinkNext />
-                    </btn>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -94,10 +81,9 @@ const Banner = () => {
 
                 <div className="flex justify-center md:justify-start">
                   <Link to={"/all-tourist-spot"}>
-                    {" "}
-                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                    <button className="btn-bg hover:bg-gray-900 py-4 mt-3 flex items-center gap-2 px-8 rounded text-white font-semibold border-none">
                       Explore Now <GrLinkNext />
-                    </btn>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -132,10 +118,9 @@ const Banner = () => {
 
                 <div className="flex justify-center md:justify-start">
                   <Link to={"/all-tourist-spot"}>
-                    {" "}
-                    <btn className="btn-bg hover:bg-gray-900 py-3 mt-3 flex items-center gap-2 px-3 rounded text-white font-semibold border-none">
+                    <button className="btn-bg hover:bg-gray-900 py-4 mt-3 flex items-center gap-2 px-8 rounded text-white font-semibold border-none">
                       Explore Now <GrLinkNext />
-                    </btn>
+                    </button>
                   </Link>
                 </div>
               </div>
