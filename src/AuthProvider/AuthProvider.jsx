@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { createContext, useEffect, useState } from 'react';
+import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from "react";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -11,42 +11,42 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-} from 'firebase/auth';
-
-import app from '../../Firebase/firebase.config';
-
-import axios from 'axios';
-import { toast } from 'react-toastify';
-
+} from "firebase/auth";
+import app from "../../Firebase/firebase.config";
+import axios from "axios";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
+  const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const auth = getAuth(app);
-
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log(currentUser);
       setLoading(true);
       const userEmail = { email: currentUser?.email } || user?.email;
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post('https://adventure-travel-server.vercel.app/jwt', userEmail, {
+          .post("https://adventure-travel-server.vercel.app/jwt", userEmail, {
             withCredentials: true,
           })
-          .then(res => console.log(res.data));
+          .then((res) => console.log(res.data));
+        // console.log("emailVerify", currentUser.emailVerified);
+        // if (currentUser.emailVerified === true) {
+        //   setIsVerified(true);
+        // }
       } else {
         axios
           .post(
-            'https://adventure-travel-server.vercel.app/logout',
+            "https://adventure-travel-server.vercel.app/logout",
             userEmail,
             {
               withCredentials: true,
             }
           )
-          .then(res => console.log(res.data));
+          .then((res) => console.log(res.data));
       }
       setTimeout(setLoading, 500, false);
     });
@@ -56,6 +56,7 @@ const AuthProvider = ({ children }) => {
     };
   }, [auth, user]);
 
+  console.log(isVerified);
   const handleUpdateProfile = (name, photo) => {
     updateProfile(auth.currentUser, {
       displayName: name,
@@ -89,10 +90,14 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const emailVerify = () => {
-    sendEmailVerification(auth.currentUser).then(() => {
-      toast('Email verification message sent to your email.');
-    });
+  const emailVerify = async (user) => {
+    await sendEmailVerification(user);
+    if (isVerified) {
+    }
+  };
+
+  const updateUserStatus = () => {
+    user.reload();
   };
 
   const authInfo = {
@@ -105,6 +110,8 @@ const AuthProvider = ({ children }) => {
     loading,
     handleUpdateProfile,
     emailVerify,
+    isVerified,
+    updateUserStatus,
   };
 
   return (

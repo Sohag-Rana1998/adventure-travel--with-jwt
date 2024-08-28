@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { GrLinkNext } from "react-icons/gr";
 const Banner = () => {
   return (
-    <div className=" w-full  mx-auto  ">
+    <div className=" w-full  mx-auto md:-mt-3 ">
       <Swiper
         effect={"fade"}
         fadeEffect={{ crossFade: true }}

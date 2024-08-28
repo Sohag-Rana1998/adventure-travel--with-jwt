@@ -1,67 +1,68 @@
-import { Link, ScrollRestoration, useNavigate } from 'react-router-dom';
+import { Link, ScrollRestoration, useNavigate } from "react-router-dom";
 
-import 'react-toastify/dist/ReactToastify.css';
-import { Button } from '@material-tailwind/react';
-import { Helmet } from 'react-helmet-async';
-import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGithub } from 'react-icons/fa6';
-import Swal from 'sweetalert2';
-import { getAuth, updateProfile } from 'firebase/auth';
-
-import app from '../../../Firebase/firebase.config';
-import useAuth from '../../Components/useHooks/useAuth/useAuth';
-import axios from 'axios';
+import "react-toastify/dist/ReactToastify.css";
+import { Button } from "@material-tailwind/react";
+import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import { FaGithub } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import useAuth from "../../Components/useHooks/useAuth/useAuth";
+import axios from "axios";
 
 const Register = () => {
   const [type, setType] = useState(false);
-  const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =
-    useAuth();
-  const auth = getAuth(app);
-  const handleSubmit = async e => {
+  const {
+    createUserByEmailAndPassword,
+    signInWithGithub,
+    signInWithGoogle,
+    // emailVerify,
+    handleUpdateProfile,
+  } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const image = e.target.photo.files[0];
     const email = e.target.email.value;
     const password = e.target.password.value;
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     if (!/[A-Z]/.test(password)) {
-      toast.warn('Your Password Should Have One Uppercase Letter.');
+      toast.warn("Your Password Should Have One Uppercase Letter.");
       return;
     } else if (!/[a-z]/.test(password)) {
-      toast.warn('Your Password Should Have One Lowercase Letter.');
+      toast.warn("Your Password Should Have One Lowercase Letter.");
       return;
     } else if (password.length < 6) {
-      toast.warn('Password Must Be Minimum 06 Character.');
+      toast.warn("Password Must Be Minimum 06 Character.");
       return;
     }
     // console.log(name, email, photo, password);
     try {
       const { data } = await axios.post(
-        'https://api.imgbb.com/1/upload?&key=2de4c1f472c4c211f51f4b495b3bea1d',
+        "https://api.imgbb.com/1/upload?&key=2de4c1f472c4c211f51f4b495b3bea1d",
         formData
       );
       const photo = data.data.display_url;
       const result = await createUserByEmailAndPassword(email, password);
       console.log(result);
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photo,
-      });
-
-      navigate('/');
+      if (result?.user) {
+        // emailVerify(result?.user)
+        handleUpdateProfile(name, photo);
+        navigate("/");
+      }
 
       Swal.fire({
-        icon: 'success',
-        title: 'Congratulation! Your account is registered successfully',
-        showConfirmButton: true,
+        icon: "success",
+        title: "Congratulation! Your account is registered successfully",
+        showConfirmButton: false,
       });
     } catch (err) {
       Swal.fire({
-        icon: 'error',
+        icon: "error",
         title: err.message,
         showConfirmButton: false,
         timer: 1500,
@@ -75,19 +76,19 @@ const Register = () => {
     signInWithGoogle()
       .then(() => {
         // console.log(result.user);
-        navigate('/');
+        navigate("/");
         Swal.fire({
-          icon: 'success',
-          title: 'Log In successful',
+          icon: "success",
+          title: "Log In successful",
           showConfirmButton: false,
           timer: 1500,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         Swal.fire({
-          icon: 'error',
-          title: 'Something went wrong. Please try again.',
+          icon: "error",
+          title: "Something went wrong. Please try again.",
           showConfirmButton: true,
         });
       });
@@ -96,20 +97,20 @@ const Register = () => {
     signInWithGithub()
       .then(() => {
         // console.log(result.user);
-        navigate('/');
+        navigate("/");
 
         Swal.fire({
-          icon: 'success',
-          title: 'Log In successful',
+          icon: "success",
+          title: "Log In successful",
           showConfirmButton: false,
           timer: 1500,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         Swal.fire({
-          icon: 'error',
-          title: 'Something went wrong. Please try again.',
+          icon: "error",
+          title: "Something went wrong. Please try again.",
           showConfirmButton: true,
         });
       });
@@ -172,24 +173,17 @@ const Register = () => {
                 id="email"
                 placeholder="Email address"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
-              />{' '}
+              />{" "}
             </div>
             <div>
-              <div className="flex  justify-between mb-2">
+              <div className="mb-2">
                 <label htmlFor="password" className="text-sm font-bold">
                   Password
                 </label>
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-xs hover:underline text-gray-600"
-                >
-                  Forgot password?
-                </a>
               </div>
               <div className="relative">
                 <input
-                  type={type ? 'text' : 'password'}
+                  type={type ? "text" : "password"}
                   name="password"
                   id="password"
                   required
@@ -205,7 +199,7 @@ const Register = () => {
                   ) : (
                     <IoEyeOff className="text-2xl" />
                   )}
-                </span>{' '}
+                </span>{" "}
               </div>
             </div>
           </div>
@@ -219,8 +213,8 @@ const Register = () => {
             </div>
             <p className="px-6 text-sm text-center ">
               Already have an account yet?
-              <Link to={'/login'}>
-                {' '}
+              <Link to={"/login"}>
+                {" "}
                 <button className="hover:underline cursor-pointer font-bold text-xl text-blue-600">
                   Log In
                 </button>

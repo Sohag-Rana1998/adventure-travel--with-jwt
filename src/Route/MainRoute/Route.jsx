@@ -1,44 +1,45 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Root from '../../Root/Root';
-import ErrorPage from '../../Pages/ErrorPage/ErrorPage';
-import Home from '../../Pages/Home/Home';
-import ContactUs from '../../Pages/ContactUs/ContactUs';
-import Login from '../../Pages/Login/Login';
-import Register from '../../Pages/Register/Register';
-import AddTouristSpot from '../../Pages/AddTouristSpot/AddTouristSpot';
-import AllTouristSpot from '../../Pages/AllTouristSpot/AllTouristSpot';
-import PrivateRoute from '../PrivetRoute/PrivateRoute';
-import ViewSpotDetails from '../../Pages/ViewSpotDetails/ViewSpotDetails';
-import UpdateTouristData from '../../Pages/UpdateTouristData/UpdateTouristData';
-import MyListOfSpot from '../../Pages/MyListOfSpot/MyListOfSpot';
-import CountriesSpots from '../../Pages/CoutriesSpots/CountriesSpots';
-import FullReview from '../../Pages/Home/Sections/FullReview';
-import AddReview from '../../Pages/Home/Sections/AddReview';
+import { createBrowserRouter } from "react-router-dom";
+import Root from "../../Root/Root";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
+import Home from "../../Pages/Home/Home";
+import ContactUs from "../../Pages/ContactUs/ContactUs";
+import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Register/Register";
+import AddTouristSpot from "../../Pages/AddTouristSpot/AddTouristSpot";
+import AllTouristSpot from "../../Pages/AllTouristSpot/AllTouristSpot";
+import PrivateRoute from "../PrivetRoute/PrivateRoute";
+import ViewSpotDetails from "../../Pages/ViewSpotDetails/ViewSpotDetails";
+import UpdateTouristData from "../../Pages/UpdateTouristData/UpdateTouristData";
+import MyListOfSpot from "../../Pages/MyListOfSpot/MyListOfSpot";
+import CountriesSpots from "../../Pages/CoutriesSpots/CountriesSpots";
+import FullReview from "../../Pages/Home/Sections/FullReview";
+import AddReview from "../../Pages/Home/Sections/AddReview";
+import EmailVerify from "../../Pages/EmailVerify/EmailVerify";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Root></Root>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
       },
       {
-        path: '/contact-us',
+        path: "/contact-us",
         element: <ContactUs></ContactUs>,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login></Login>,
       },
       {
-        path: '/register',
+        path: "/register",
         element: <Register></Register>,
       },
       {
-        path: '/add_tourist_spot',
+        path: "/add_tourist_spot",
         element: (
           <PrivateRoute>
             <AddTouristSpot></AddTouristSpot>
@@ -46,11 +47,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/all-tourist-spot',
+        path: "/all-tourist-spot",
         element: <AllTouristSpot></AllTouristSpot>,
       },
       {
-        path: '/my-tourist-spot-list',
+        path: "/my-tourist-spot-list",
         element: (
           <PrivateRoute>
             <MyListOfSpot></MyListOfSpot>
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/view-details/:id',
+        path: "/view-details/:id",
         element: (
           <PrivateRoute>
             <ViewSpotDetails></ViewSpotDetails>
@@ -66,11 +67,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/full-review/:id',
+        path: "/full-review/:id",
         element: <FullReview></FullReview>,
       },
       {
-        path: '/update-tourist-data/:id',
+        path: "/update-tourist-data/:id",
         element: (
           <PrivateRoute>
             <UpdateTouristData></UpdateTouristData>
@@ -78,13 +79,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/countries-spots/:CountryName',
+        path: "/countries-spots/:CountryName",
         element: <CountriesSpots></CountriesSpots>,
       },
       {
-        path: '/add-review',
+        path: "/add-review",
         element: <AddReview></AddReview>,
       },
+      // {
+      //   path: "/verify-email",
+      //   element: <EmailVerify />,
+      // },
     ],
   },
 ]);

@@ -1,11 +1,13 @@
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "../Components/Shared/Nav/Nav";
 import Footer from "../Components/Shared/Footer/Footer";
 import { useEffect, useState } from "react";
 
 const Root = () => {
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const noNavbar = location.pathname.includes("/verify-email");
   useEffect(() => {
     setTimeout(setLoading, 500, false);
   }, []);
@@ -15,17 +17,13 @@ const Root = () => {
     </div>
   ) : (
     <div className="">
-      <div>
-        <NavBar />
-      </div>
+      <div>{noNavbar ? <></> : <NavBar />}</div>
 
-      <div className="pt-32  px-3 md:px-0  w-full mx-auto">
+      <div className="pt-16 w-full mx-auto">
         <Outlet />
       </div>
 
-      <div>
-        <Footer />
-      </div>
+      <div>{noNavbar ? <></> : <Footer />}</div>
       <ToastContainer
         position="top-center"
         autoClose={2500}

@@ -189,22 +189,18 @@ const NavBar = () => {
   return loading ? (
     <div className="w-full"></div>
   ) : (
-    <div className="fixed z-30 w-full ">
-      <div
-        className={`w-full relative transition-bottom  duration-700 ${
-          isScrolled ? "-top-28" : "top-0"
-        }`}
-      >
+    <div className="w-full ">
+      <div className={`hidden md:block`}>
         <NavTop />
       </div>
       <div
-        className={`w-full relative   transition-top  pb-0 duration-500 ${
+        className={`w-full fixed z-50    duration-500 ${
           isScrolled
-            ? "-top-[92px] md:-top-[52px] !bg-[#061A3A] text-white"
-            : "top-0 bg-white"
-        } ${type ? "bg-[#061A3A] text-white" : "bg-white text-black"}`}
+            ? "top-0 !bg-[#061A3A] text-white "
+            : "bg-white top-0  md:top-14"
+        } ${type ? "!bg-[#061A3A] text-white" : "bg-white text-black"}`}
       >
-        <div className="navbar max-w-7xl container  mx-auto p-0 ">
+        <div className="navbar m-0 max-w-7xl container  mx-auto p-0 ">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -229,7 +225,9 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm text-black dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
+                className={`menu menu-sm ${
+                  type ? "!bg-[#061A3A] text-white" : "bg-white text-black"
+                } dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40`}
               >
                 {Links}
                 <div className="navbar-end mt-2 ">
@@ -270,7 +268,7 @@ const NavBar = () => {
                 </div>
               </ul>
             </div>
-            <div className="flex w-full justify-between items-center ">
+            <div className="flex w-full  items-center gap-2">
               <Link to={"/"}>
                 <img
                   src="https://i.postimg.cc/0y4sGf8c/logo.png"
@@ -278,6 +276,9 @@ const NavBar = () => {
                   className="h-16 w-16"
                 />
               </Link>
+              <h3 className="text-2xl font-bold hidden lg:block">
+                Adventure Travel
+              </h3>
             </div>
           </div>
           <div className="flex md:hidden justify-end items-center w-full mx-5">
